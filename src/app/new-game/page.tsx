@@ -19,6 +19,8 @@ export default function NewGamePage() {
   const router = useRouter();
   const newGame = useGameStore((s) => s.newGame);
   const [selected, setSelected] = useState<string | null>(null);
+  const [isStarting, setIsStarting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const underdogs = useMemo(
     () =>
@@ -29,9 +31,17 @@ export default function NewGamePage() {
     []
   );
 
-  const start = (teamId?: string) => {
-    newGame(teamId);
-    router.push("/team");
+  const start = async (teamId?: string) => {
+    setIsStarting(true);
+    setError(null);
+    try {
+      await newGame(teamId);
+      router.push("/team");
+    } catch (err) {
+      setError("Failed to start a new game. Please try again.");
+    } finally {
+      setIsStarting(false);
+    }
   };
 
   return (
@@ -55,17 +65,19 @@ export default function NewGamePage() {
             <button
               onClick={() => start(pickRandomUnderdogTeam(underdogs.map((u) => u.id)))}
               className="rounded-md bg-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 hover:bg-blue-400"
+              disabled={isStarting}
             >
-              Random underdog
+              {isStarting ? "Starting…" : "Random underdog"}
             </button>
             <button
-              disabled={!selected}
+              disabled={!selected || isStarting}
               onClick={() => start(selected || undefined)}
               className="rounded-md bg-slate-800 px-4 py-2 text-sm font-semibold text-slate-100 transition enabled:hover:-translate-y-0.5 enabled:hover:bg-slate-700 disabled:opacity-50"
             >
-              Start with selected
+              {isStarting ? "Starting…" : "Start with selected"}
             </button>
           </div>
+          {error && <div className="mb-2 text-xs text-amber-200">{error}</div>}
           <div className="grid gap-2 sm:grid-cols-2">
             {underdogs.map((team) => (
               <label

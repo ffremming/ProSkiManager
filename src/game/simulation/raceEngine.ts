@@ -14,19 +14,22 @@ export function simulateRace(input: RaceInput): RaceSnapshot[] {
   const dt = 2; // seconds per tick.
 
   let t = 0;
-  let state = input.athletes.map((athlete) => ({
+  let state = input.athletes.map((athlete, idx) => ({
     id: athlete.id,
     distance: 0,
     energy: 100,
-    laneOffset: Math.random() * 1.2 - 0.6,
+    laneOffset: mapLaneOffset(idx),
     athlete,
     effort: 1,
   }));
 
   const totalDistance = input.course.totalDistance;
   const tactic = input.prep?.tactic || "PROTECT_LEADER";
+  const roleMap: Record<string, string> = input.prep?.roles || {};
   const gear = resolveGear(input);
   const conditions = input.conditions;
+
+  const pacing = input.prep?.pacing || "STEADY";
 
   while (state.some((s) => s.distance < totalDistance)) {
     const groups = computeGroups(state);
@@ -43,7 +46,9 @@ export function simulateRace(input: RaceInput): RaceSnapshot[] {
       athletes: snapshotAthletes,
     });
 
-    state = state.map((s) => advanceAthlete(s, dt, input.course, totalDistance, tactic, gear, conditions, groups));
+    state = state.map((s) =>
+      advanceAthlete(s, dt, input.course, totalDistance, tactic, pacing, gear, conditions, groups, roleMap)
+    );
     t += dt;
   }
 
@@ -65,13 +70,16 @@ function advanceAthlete(
   course: RaceCourse,
   totalDistance: number,
   tactic: string,
+  pacing: RacePrep["pacing"] | undefined,
   gear: GearModifiers,
   conditions: RaceConditions | undefined,
-  groups: ReturnType<typeof computeGroups>
+  groups: ReturnType<typeof computeGroups>,
+  roleMap: Record<string, string>
 ): AthleteRuntime {
   const stats = state.athlete.baseStats;
-  const { form, fatigue } = state.athlete.state;
+  const { form, fatigue, morale } = state.athlete.state;
   const segment = getSegmentForDistance(course, state.distance);
+  const role = roleMap[state.id];
 
   const terrainFactor =
     segment.gradient > 2
@@ -81,10 +89,7 @@ function advanceAthlete(
       : stats.flat;
 
   let power =
-    (stats.endurance * 0.5 +
-      terrainFactor * 0.4 +
-      form * 0.2 -
-      fatigue * 0.3) /
+    (stats.endurance * 0.5 + terrainFactor * 0.4 + form * 0.2 - fatigue * 0.3 + morale * 0.1) /
     100;
 
   // Gender adjustment (females slightly slower overall while preserving relative differences)
@@ -102,7 +107,15 @@ function advanceAthlete(
   // Tactic influence
   const tacticEffort = tactic === "AGGRESSIVE" ? 1.15 : tactic === "DEFENSIVE" ? 0.9 : 1;
   power *= tacticEffort;
-  const effort = tacticEffort;
+  const pacingEffort = pacing === "AGGRESSIVE" ? 1.08 : pacing === "DEFENSIVE" ? 0.94 : 1;
+  power *= pacingEffort;
+  const effort = tacticEffort * pacingEffort;
+
+  // Role bonuses/penalties based on course profile
+  if (role === "CAPTAIN") power *= 1.04;
+  if (role === "SPRINTER" && segment.isSprint) power *= 1.08;
+  if (role === "CLIMBER" && segment.isClimb) power *= 1.08;
+  if (role === "DOMESTIQUE" && groupInfo.size > 1 && !isLeader) power *= 1.03;
 
   // Gear and conditions influence
   power *= gear.glideMod;
@@ -123,7 +136,8 @@ function advanceAthlete(
     dt *
     0.08 *
     segment.difficulty *
-    (1 + Math.max(0, segment.gradient) / 10);
+    (1 + Math.max(0, segment.gradient) / 10) *
+    (pacing === "AGGRESSIVE" ? 1.2 : pacing === "DEFENSIVE" ? 0.85 : 1);
 
   const distance = Math.min(totalDistance, state.distance + speed * dt);
   const energy = clamp(state.energy - energyCost - energyPenalty, 0, 100);
@@ -175,4 +189,12 @@ function computeGroups(state: AthleteRuntime[]) {
   });
 
   return { map, info };
+}
+
+function mapLaneOffset(idx: number) {
+  const laneSpacing = 0.7;
+  const lane = idx % 6;
+  const side = lane % 2 === 0 ? -1 : 1;
+  const magnitude = Math.floor(lane / 2) + 0.5;
+  return side * magnitude * laneSpacing;
 }

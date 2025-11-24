@@ -41,7 +41,8 @@ export default function TrainingPage() {
   };
 
   const grouped = useMemo(() => {
-    return ["CAPTAIN", "SPRINTER", "DOMESTIQUE"].map((role) => ({
+    const roles = Array.from(new Set(["CAPTAIN", "SPRINTER", "CLIMBER", "DOMESTIQUE"]));
+    return roles.map((role) => ({
       role,
       athletes: athletes.filter((a) => a.role === role),
     }));

@@ -32,6 +32,7 @@ function applyPlan(athlete: Athlete, plan: WeeklyTrainingPlan, state: GameState)
   let fatigueGain = 0;
   let formDelta = 0;
   const statGain = { endurance: 0, climbing: 0, flat: 0, sprint: 0 };
+  const healthPenalty = athlete.state.health !== "OK" ? 0.5 : 1;
 
   for (const session of plan.sessions) {
     switch (session.intensity) {
@@ -55,13 +56,13 @@ function applyPlan(athlete: Athlete, plan: WeeklyTrainingPlan, state: GameState)
     if (session.intensity !== "REST") {
       switch (session.focus) {
         case "ENDURANCE":
-          statGain.endurance += 0.2 * coachBonus;
+          statGain.endurance += 0.2 * coachBonus * healthPenalty;
           break;
         case "CLIMB":
-          statGain.climbing += 0.2 * coachBonus;
+          statGain.climbing += 0.2 * coachBonus * healthPenalty;
           break;
         case "SPEED":
-          statGain.sprint += 0.2 * coachBonus;
+          statGain.sprint += 0.2 * coachBonus * healthPenalty;
           break;
       }
     }
@@ -70,7 +71,7 @@ function applyPlan(athlete: Athlete, plan: WeeklyTrainingPlan, state: GameState)
   athlete.state = {
     ...athlete.state,
     fatigue: clamp(athlete.state.fatigue + fatigueGain, 0, 100),
-    form: clamp(athlete.state.form + formDelta, -20, 20),
+    form: clamp(athlete.state.form + formDelta * healthPenalty, -20, 20),
   };
 
   athlete.baseStats = {
@@ -91,7 +92,8 @@ function cappedGain(current: number, gain: number, potential: number) {
 function getCoachBonus(state: GameState) {
   const coach = state.staff.find((s) => s.role === "COACH");
   const facility = state.facilities.trainingCenter || 1;
-  const base = coach ? 1 + coach.skill / 200 : 1;
+  const focusBonus = coach?.focus === "ENDURANCE" ? 0.05 : coach?.focus === "CLIMB" ? 0.03 : 0;
+  const base = coach ? 1 + coach.skill / 200 + focusBonus : 1;
   return base + facility * 0.05;
 }
 

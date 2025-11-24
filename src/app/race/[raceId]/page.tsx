@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useGameStore } from "../../../state/gameStore";
 import { RaceCanvas } from "../../../components/race/RaceCanvas";
@@ -8,7 +9,7 @@ import { raceCourses } from "../../../game/data/sampleData";
 import { RaceSnapshot } from "../../../game/domain/types";
 
 export default function RacePage({ params }: { params: { raceId: string } }) {
-  const { activeRace, startRace, finishRace, teams, playerTeamId, athletes, standings, pastResults } =
+  const { activeRace, startRace, finishRace, teams, playerTeamId, athletes, standings, pastResults, racePrep, setRacePrep } =
     useGameStore((state) => ({
       activeRace: state.activeRace,
       startRace: state.startRace,
@@ -18,22 +19,34 @@ export default function RacePage({ params }: { params: { raceId: string } }) {
       athletes: state.athletes,
       standings: state.standings,
       pastResults: state.pastResults,
+      racePrep: state.racePrep,
+      setRacePrep: state.setRacePrep,
     }));
   const [frame, setFrame] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [speed, setSpeed] = useState(1);
   const [finished, setFinished] = useState(false);
+  const frameCount = activeRace?.snapshots.length || 0;
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     if (!activeRace || activeRace.raceId !== params.raceId) {
-      startRace(params.raceId);
+      // Only start race if prep is acceptable
+      const prepLineup = racePrep?.lineup || [];
+      const minReady = prepLineup.length >= 6 && (racePrep?.tactic || "").length > 0;
+      if (minReady) {
+        startRace(params.raceId);
+        setBlocked(false);
+      } else {
+        setBlocked(true);
+      }
     }
     setFrame(0);
     setFinished(false);
-  }, [activeRace?.raceId, params.raceId, startRace, activeRace]);
+  }, [activeRace?.raceId, params.raceId, startRace, activeRace, racePrep]);
 
   useEffect(() => {
-    if (!activeRace) return;
+    if (!activeRace || finished) return;
     if (!playing) return;
     const id = setInterval(() => {
       setFrame((f) => {
@@ -45,7 +58,7 @@ export default function RacePage({ params }: { params: { raceId: string } }) {
       });
     }, 200);
     return () => clearInterval(id);
-  }, [activeRace, playing, speed]);
+  }, [activeRace, playing, speed, finished]);
 
   // When finished, commit results to store once.
   useEffect(() => {
@@ -83,10 +96,60 @@ export default function RacePage({ params }: { params: { raceId: string } }) {
     ? [...(activeRace?.snapshots[activeRace.snapshots.length - 1].athletes || [])].sort((a, b) => b.distance - a.distance)
     : [];
   const pastResult = pastResults.find((r) => r.raceId === params.raceId);
+  const meta = activeRace || pastResult?.meta;
+  const conditions = meta?.conditions;
+  const prepLineup = racePrep?.lineup || [];
+  const prepIssues: string[] = [];
+  if (prepLineup.length < 6) prepIssues.push("Select at least 6 skiers");
+  if (!racePrep?.tactic) prepIssues.push("Set a tactic in race prep");
 
   return (
     <div className="w-full h-screen flex">
       <div className="flex-1 relative">
+        {blocked && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-slate-900/80">
+            <div className="w-[420px] rounded-xl border border-white/10 bg-white/5 p-4 text-slate-100 shadow-xl">
+              <div className="text-lg font-semibold">Race prep required</div>
+              <div className="mt-2 text-sm text-slate-300">
+                Complete the checklist before starting the race.
+              </div>
+              <ul className="mt-2 list-disc pl-5 text-xs text-amber-200 space-y-1">
+                {prepIssues.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+              <div className="mt-3 flex gap-2">
+                <button
+                  onClick={() => {
+                    // Auto-fill lineup with full roster and set default tactic
+                    const ids = Object.values(athletes).map((a) => a.id);
+                    setRacePrep({
+                      raceId: params.raceId,
+                      lineup: ids,
+                      tactic: racePrep?.tactic || "PROTECT_LEADER",
+                      pacing: racePrep?.pacing || "STEADY",
+                      roles: racePrep?.roles,
+                      skiChoice: racePrep?.skiChoice,
+                      waxChoice: racePrep?.waxChoice,
+                      conditions: racePrep?.conditions,
+                    });
+                    setBlocked(false);
+                    startRace(params.raceId);
+                  }}
+                  className="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white"
+                >
+                  Auto-complete & start
+                </button>
+                <Link
+                  href="/race-setup"
+                  className="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-slate-100 hover:bg-white/20"
+                >
+                  Go to race prep
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
         {activeRace && course ? (
           <RaceCanvas snapshots={activeRace.snapshots} course={course} frame={frame} />
         ) : (
@@ -120,6 +183,19 @@ export default function RacePage({ params }: { params: { raceId: string } }) {
               {s}x
             </button>
           ))}
+          <div className="flex items-center gap-2 rounded bg-slate-900/70 px-3 py-2 text-xs text-white">
+            <span>Scrub</span>
+            <input
+              type="range"
+              min={0}
+              max={Math.max(frameCount - 1, 0)}
+              value={frame}
+              onChange={(e) => {
+                setPlaying(false);
+                setFrame(Number(e.target.value));
+              }}
+            />
+          </div>
         </div>
       </div>
       <div className="w-96 border-l p-4 bg-slate-900/70 text-slate-100 overflow-y-auto">
@@ -154,11 +230,27 @@ export default function RacePage({ params }: { params: { raceId: string } }) {
                 <div className="text-slate-400">
                   Energy {Math.round(a.energy)} · Pace {snapshot.t > 0 ? Math.round(a.distance / snapshot.t) : 0} m/s
                 </div>
-                <div className="text-slate-400">Tactic: {activeRace.tactic || "N/A"}</div>
+                <div className="text-slate-400">Tactic: {meta?.tactic || "N/A"} · Pacing: {meta?.pacing || "STEADY"}</div>
               </div>
             );
           })}
         </div>
+        {meta && (
+          <div className="mt-4 rounded border border-white/10 bg-white/5 p-3 text-sm space-y-1">
+            <div className="font-semibold">Race context</div>
+            {conditions ? (
+              <div className="text-slate-300 text-xs">
+                Temp {conditions.temperatureC}°C · Snow {conditions.snow} · Wind {conditions.windKph} km/h
+              </div>
+            ) : null}
+            <div className="text-slate-300 text-xs">
+              Skis {meta.skiChoice || "Auto"} · Wax {meta.waxChoice || "Auto"}
+            </div>
+            <div className="text-slate-400 text-xs">
+              Lineup: {meta.lineup?.length ? meta.lineup.length : "full field"}
+            </div>
+          </div>
+        )}
         {finished && (
           <div className="mt-4">
             <div className="font-semibold mb-1">Results</div>

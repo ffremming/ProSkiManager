@@ -14,6 +14,7 @@ import {
   ScoutAssignment,
   RaceConditions,
 } from "../domain/types";
+import { GameDataGateway, getGameDataGateway, setGameDataGateway } from "./gameDataGateway";
 import { athletePool, teamNames } from "./athletePool";
 
 const okState = {
@@ -98,6 +99,9 @@ const defaultEquipment: EquipmentInventory = {
     { id: "ski-1", name: "SnowTech Glide", type: "SKI", grip: 60, glide: 80, cost: 1200, stock: 8 },
     { id: "ski-2", name: "Nordic GripPro", type: "SKI", grip: 80, glide: 65, cost: 1000, stock: 6 },
     { id: "wax-1", name: "GlideWax Cold", type: "WAX", grip: 55, glide: 75, cost: 200, stock: 20 },
+    { id: "ski-3", name: "Feather Carbon", type: "SKI", grip: 68, glide: 85, cost: 1500, stock: 4 },
+    { id: "wax-2", name: "KickMax Warm", type: "WAX", grip: 80, glide: 60, cost: 180, stock: 14 },
+    { id: "wax-3", name: "Midnight Fluoro", type: "WAX", grip: 65, glide: 88, cost: 260, stock: 10 },
   ],
 };
 
@@ -235,8 +239,94 @@ export const financeTemplate: FinanceState = {
   history: [],
 };
 
-export function createInitialState(playerTeamId?: string): GameState {
-  const { teams, athletes } = buildTeams();
+type SeedDataSnapshot = {
+  teams: Record<string, Team>;
+  athletes: Record<string, Athlete>;
+  staff: StaffMember[];
+  facilities: FacilityLevels;
+  sponsors: Sponsor[];
+  equipment: EquipmentInventory;
+  transferList: TransferCandidate[];
+  scoutAssignments: ScoutAssignment[];
+  prospects: Prospect[];
+  raceCourses: Record<string, RaceCourse>;
+  raceConditions: Record<string, RaceConditions>;
+  seasonRaces: SeasonRace[];
+  financeTemplate: FinanceState;
+};
+
+const { teams: seedTeams, athletes: seedAthletes } = buildTeams();
+
+const seedSnapshot: SeedDataSnapshot = {
+  teams: seedTeams,
+  athletes: seedAthletes,
+  staff: defaultStaff,
+  facilities: defaultFacilities,
+  sponsors: defaultSponsors,
+  equipment: defaultEquipment,
+  transferList: defaultTransferList,
+  scoutAssignments: defaultScoutAssignments,
+  prospects: defaultProspects,
+  raceCourses,
+  raceConditions,
+  seasonRaces,
+  financeTemplate,
+};
+
+class InMemoryGameDataGateway implements GameDataGateway {
+  constructor(private readonly snapshot: SeedDataSnapshot) {}
+
+  fetchTeams() {
+    return Promise.resolve({ ...this.snapshot.teams });
+  }
+  fetchAthletes() {
+    return Promise.resolve({ ...this.snapshot.athletes });
+  }
+  fetchStaff() {
+    return Promise.resolve([...this.snapshot.staff]);
+  }
+  fetchFacilities() {
+    return Promise.resolve({ ...this.snapshot.facilities });
+  }
+  fetchSponsors() {
+    return Promise.resolve([...this.snapshot.sponsors]);
+  }
+  fetchEquipment() {
+    return Promise.resolve({ items: [...this.snapshot.equipment.items] });
+  }
+  fetchTransferList() {
+    return Promise.resolve([...this.snapshot.transferList]);
+  }
+  fetchScoutAssignments() {
+    return Promise.resolve([...this.snapshot.scoutAssignments]);
+  }
+  fetchProspects() {
+    return Promise.resolve([...this.snapshot.prospects]);
+  }
+  fetchSeasonRaces() {
+    return Promise.resolve([...this.snapshot.seasonRaces]);
+  }
+  fetchFinanceTemplate() {
+    return Promise.resolve({ ...this.snapshot.financeTemplate, history: [] });
+  }
+  fetchRaceConditions() {
+    return Promise.resolve({ ...this.snapshot.raceConditions });
+  }
+  fetchRaceCourses() {
+    return Promise.resolve({ ...this.snapshot.raceCourses });
+  }
+}
+
+const seedGateway = new InMemoryGameDataGateway(seedSnapshot);
+setGameDataGateway(seedGateway);
+
+export function buildInitialStateFromSnapshot(snapshot: SeedDataSnapshot, playerTeamId?: string): GameState {
+  const teams = Object.fromEntries(
+    Object.entries(snapshot.teams).map(([id, team]) => [id, { ...team, athletes: [...team.athletes] }])
+  );
+  const athletes = Object.fromEntries(
+    Object.entries(snapshot.athletes).map(([id, athlete]) => [id, { ...athlete, state: { ...athlete.state } }])
+  );
   const chosenTeamId = playerTeamId || pickRandomUnderdogTeam(Object.keys(teams));
   return {
     currentWeek: 1,
@@ -245,20 +335,85 @@ export function createInitialState(playerTeamId?: string): GameState {
     playerTeamId: chosenTeamId,
     teams,
     athletes,
-    finance: { ...financeTemplate },
-    staff: defaultStaff,
-    facilities: defaultFacilities,
-    sponsors: defaultSponsors,
-    equipment: defaultEquipment,
-    transferList: defaultTransferList,
-    scoutAssignments: defaultScoutAssignments,
-    prospects: defaultProspects,
+    finance: { ...snapshot.financeTemplate },
+    staff: snapshot.staff.map((s) => ({ ...s })),
+    facilities: { ...snapshot.facilities },
+    sponsors: snapshot.sponsors.map((s) => ({ ...s, goal: s.goal ? { ...s.goal } : undefined })),
+    equipment: { items: snapshot.equipment.items.map((i) => ({ ...i })) },
+    transferList: snapshot.transferList.map((t) => ({ ...t })),
+    scoutAssignments: snapshot.scoutAssignments.map((s) => ({ ...s })),
+    prospects: snapshot.prospects.map((p) => ({ ...p })),
     racePrep: undefined,
     trainingPlans: [],
-    seasonRaces,
+    seasonRaces: snapshot.seasonRaces,
     pastResults: [],
     standings: { athletes: {}, teams: {} },
+    formations: {},
   };
 }
 
+export async function loadInitialState(playerTeamId?: string, gateway: GameDataGateway = getGameDataGateway()) {
+  const [
+    teams,
+    athletes,
+    staff,
+    facilities,
+    sponsors,
+    equipment,
+    transferList,
+    scoutAssignments,
+    prospects,
+    raceCoursesData,
+    raceConditionsData,
+    seasonRaceData,
+    financeState,
+  ] = await Promise.all([
+    gateway.fetchTeams(),
+    gateway.fetchAthletes(),
+    gateway.fetchStaff(),
+    gateway.fetchFacilities(),
+    gateway.fetchSponsors(),
+    gateway.fetchEquipment(),
+    gateway.fetchTransferList(),
+    gateway.fetchScoutAssignments(),
+    gateway.fetchProspects(),
+    gateway.fetchRaceCourses(),
+    gateway.fetchRaceConditions(),
+    gateway.fetchSeasonRaces(),
+    gateway.fetchFinanceTemplate(),
+  ]);
+
+  // Update reference exports for the rest of the app when using non-seed gateway.
+  Object.assign(raceCourses, raceCoursesData);
+  Object.assign(raceConditions, raceConditionsData);
+  seasonRaces.splice(0, seasonRaces.length, ...seasonRaceData);
+
+  const snapshot: SeedDataSnapshot = {
+    teams,
+    athletes,
+    staff,
+    facilities,
+    sponsors,
+    equipment,
+    transferList,
+    scoutAssignments,
+    prospects,
+    raceCourses: raceCoursesData,
+    raceConditions: raceConditionsData,
+    seasonRaces: seasonRaceData,
+    financeTemplate: financeState,
+  };
+
+  return buildInitialStateFromSnapshot(snapshot, playerTeamId);
+}
+
+export function createInitialState(playerTeamId?: string): GameState {
+  // Uses seed snapshot synchronously; swap to loadInitialState for async gateways.
+  return buildInitialStateFromSnapshot(seedSnapshot, playerTeamId);
+}
+
 export const baseInitialState = createInitialState();
+
+export function configureGameDataGateway(gateway: GameDataGateway) {
+  setGameDataGateway(gateway);
+}

@@ -27,7 +27,7 @@ export type AthleteContract = {
   weeksRemaining: number;
 };
 
-export type Role = "CAPTAIN" | "DOMESTIQUE" | "SPRINTER";
+export type Role = "CAPTAIN" | "DOMESTIQUE" | "SPRINTER" | "CLIMBER";
 
 export type Athlete = {
   id: string;
@@ -178,6 +178,7 @@ export type RacePrep = {
   pacing: "DEFENSIVE" | "STEADY" | "AGGRESSIVE";
   roles?: Record<string, Role>;
   tactic?: "PROTECT_LEADER" | "SPRINT_POINTS" | "BREAKAWAY" | "SURVIVE";
+  conditions?: RaceConditions;
 };
 
 export type RaceConditions = {
@@ -203,16 +204,36 @@ export type ActiveRaceState = {
   raceId: string;
   courseId: string;
   snapshots: RaceSnapshot[];
+  lineup: string[];
+  pacing?: RacePrep["pacing"];
+  tactic?: RacePrep["tactic"];
+  skiChoice?: string;
+  waxChoice?: string;
+  conditions?: RaceConditions;
 };
 
 export type RaceResultSummary = {
   raceId: string;
   results: { athleteId: string; time: number; points: number; teamId: string }[];
+  meta?: {
+    lineup?: string[];
+    pacing?: RacePrep["pacing"];
+    tactic?: RacePrep["tactic"];
+    skiChoice?: string;
+    waxChoice?: string;
+    conditions?: RaceConditions;
+  };
 };
 
 export type Standings = {
   athletes: Record<string, number>; // points
   teams: Record<string, number>; // points
+};
+
+export type TeamFormation = {
+  slots: Record<string, string>; // slotId -> athleteId
+  roles: Record<string, Role>; // slotId -> role label
+  lastUpdatedWeek?: number;
 };
 
 export type GameState = {
@@ -236,6 +257,7 @@ export type GameState = {
   pastResults: RaceResultSummary[];
   standings: Standings;
   activeRace?: ActiveRaceState;
+  formations?: Record<string, TeamFormation>;
 };
 
 export function clamp(value: number, min: number, max: number) {
