@@ -26,54 +26,31 @@ export default function RaceSetupPage() {
   const [skiChoice, setSkiChoice] = useState<string | undefined>(racePrep?.skiChoice);
   const [waxChoice, setWaxChoice] = useState<string | undefined>(racePrep?.waxChoice);
   const [pacing, setPacing] = useState<RacePrep["pacing"]>(racePrep?.pacing || "STEADY");
-  const [roles, setRoles] = useState<Record<string, string>>(racePrep?.roles || {});
   const [tactic, setTactic] = useState<RacePrep["tactic"]>(racePrep?.tactic || "PROTECT_LEADER");
   const [isLoadingRef, setIsLoadingRef] = useState(false);
   const [refError, setRefError] = useState<string | null>(null);
   const [localCourses, setLocalCourses] = useState(raceCourses);
   const [localConditions, setLocalConditions] = useState(raceConditions);
-  const [slotAssignments, setSlotAssignments] = useState<Record<string, string>>({});
+  const [orders, setOrders] = useState<RacePrep["orders"]>(
+    racePrep?.orders || {
+      label: "Balanced",
+      protectLeader: true,
+      chaseBreaks: false,
+      sprintFocus: false,
+      climbFocus: false,
+      aggression: "MED",
+    }
+  );
 
   const conditions = localConditions[raceId];
   const course = localCourses[raceId];
 
   const skis = useMemo(() => equipment.items.filter((i) => i.type === "SKI"), [equipment.items]);
   const waxes = useMemo(() => equipment.items.filter((i) => i.type === "WAX"), [equipment.items]);
-  const assignedIds = useMemo(() => new Set(Object.values(slotAssignments).filter(Boolean)), [slotAssignments]);
-  const bench = useMemo(() => athletes.filter((a) => !assignedIds.has(a.id)), [athletes, assignedIds]);
-
-  const formationSlots = useMemo(
-    () => [
-      { id: "slot-captain", label: "Captain", role: "CAPTAIN", detail: "Calls tactics, steady engine." },
-      { id: "slot-climber", label: "Mountain Domestique", role: "CLIMBER", detail: "Paces on climbs, protects leader." },
-      { id: "slot-sprinter", label: "Sprinter", role: "SPRINTER", detail: "Saves legs for final kicks and sprints." },
-      { id: "slot-enforcer", label: "Wind Blocker", role: "DOMESTIQUE", detail: "Shields pack, drags breakaways." },
-      { id: "slot-guardian", label: "Lead-out", role: "DOMESTIQUE", detail: "Positions sprinter, keeps tempo high." },
-    ],
-    []
-  );
-
-  const assignToSlot = (slotId: string, athleteId: string, role: string) => {
-    setSlotAssignments((prev) => ({ ...prev, [slotId]: athleteId }));
-    setLineup((prev) => (prev.includes(athleteId) ? prev : [...prev, athleteId]));
-    setRoles((prev) => ({ ...prev, [athleteId]: role }));
-  };
-
-  const clearSlot = (slotId: string) => {
-    setSlotAssignments((prev) => {
-      const next = { ...prev };
-      delete next[slotId];
-      return next;
-    });
-  };
-
-  const onDrop = (slotId: string, role: string, e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const athleteId = e.dataTransfer.getData("text/plain");
-    if (athleteId) {
-      assignToSlot(slotId, athleteId, role);
-    }
-  };
+  const formationLineup = useMemo(() => {
+    if (!formation?.slots) return [];
+    return Array.from(new Set(Object.values(formation.slots).filter(Boolean)));
+  }, [formation]);
 
   // Load race reference data via gateway for future DB-backed usage.
   useEffect(() => {
@@ -106,14 +83,6 @@ export default function RaceSetupPage() {
     const ordered = Object.values(formation.slots).filter(Boolean);
     if (!ordered.length) return;
     setLineup(ordered);
-    setRoles((prev) => {
-      const next = { ...prev };
-      Object.entries(formation.roles || {}).forEach(([slotId, role]) => {
-        const athleteId = formation.slots[slotId];
-        if (athleteId) next[athleteId] = role;
-      });
-      return next;
-    });
   }, [formation, racePrep?.lineup]);
 
   const autoSelectGear = () => {
@@ -130,31 +99,31 @@ export default function RaceSetupPage() {
   };
 
   const toggleLineup = (id: string) => {
-    setLineup((prev) => {
-      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
-      if (!next.includes(id)) {
-        setSlotAssignments((slots) => {
-          const updated = { ...slots };
-          Object.entries(updated).forEach(([slotId, athleteId]) => {
-            if (athleteId === id) delete updated[slotId];
-          });
-          return updated;
-        });
-      }
-      return next;
-    });
+    setLineup((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   };
 
   const save = () => {
+    const derivedRoles: Record<string, string> = {};
+    lineup.forEach((id) => {
+      const found = athletes.find((a) => a.id === id);
+      if (found) derivedRoles[id] = found.role;
+    });
+    // If formation has explicit roles, prefer those.
+    Object.entries(formation?.roles || {}).forEach(([slotId, role]) => {
+      const aid = formation?.slots?.[slotId];
+      if (aid) derivedRoles[aid] = role;
+    });
+
     setRacePrep({
       raceId,
       lineup: lineup.length ? lineup : athletes.map((a) => a.id), // fallback to full roster if empty
       skiChoice,
       waxChoice,
       pacing,
-      roles,
+      roles: derivedRoles,
       tactic,
       conditions,
+      orders,
     });
   };
 
@@ -237,6 +206,48 @@ export default function RaceSetupPage() {
                 </button>
               ))}
             </div>
+            <div className="mt-3 text-sm font-semibold text-slate-200">Strategy presets</div>
+            <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
+              {[
+                {
+                  label: "Balanced",
+                  tactic: "PROTECT_LEADER" as const,
+                  pacing: "STEADY" as const,
+                  orders: { protectLeader: true, chaseBreaks: false, sprintFocus: false, climbFocus: false, aggression: "MED" as const },
+                },
+                {
+                  label: "Protect captain",
+                  tactic: "PROTECT_LEADER" as const,
+                  pacing: "DEFENSIVE" as const,
+                  orders: { protectLeader: true, chaseBreaks: false, sprintFocus: false, climbFocus: true, aggression: "LOW" as const },
+                },
+                {
+                  label: "Sprint hunt",
+                  tactic: "SPRINT_POINTS" as const,
+                  pacing: "STEADY" as const,
+                  orders: { protectLeader: false, chaseBreaks: true, sprintFocus: true, climbFocus: false, aggression: "MED" as const },
+                },
+                {
+                  label: "Breakaway",
+                  tactic: "BREAKAWAY" as const,
+                  pacing: "AGGRESSIVE" as const,
+                  orders: { protectLeader: false, chaseBreaks: true, sprintFocus: false, climbFocus: false, aggression: "HIGH" as const },
+                },
+              ].map((preset) => (
+                <button
+                  key={preset.label}
+                  onClick={() => {
+                    setTactic(preset.tactic);
+                    setPacing(preset.pacing);
+                    setOrders({ ...preset.orders, label: preset.label });
+                  }}
+                  className="rounded-md bg-white/10 px-2 py-2 text-left text-slate-200 hover:bg-white/20"
+                >
+                  <div className="font-semibold">{preset.label}</div>
+                  <div className="text-[11px] text-slate-400">Tactic {preset.tactic.replace("_", " ")}</div>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="rounded-xl border border-white/10 bg-white/5 p-3">
@@ -280,130 +291,52 @@ export default function RaceSetupPage() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-4">
+        <section className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-sm uppercase tracking-wide text-slate-300">Formation board</div>
-              <div className="text-sm text-slate-400">Drag skiers into tactical slots like Football Manager.</div>
+              <div className="text-sm uppercase tracking-wide text-slate-300">Lineup</div>
+              <div className="text-sm text-slate-400">Uses your formation roles; adjust who starts here.</div>
               {lineup.length < 6 && (
                 <div className="mt-1 text-xs text-amber-200">Add more skiers: low lineup size can hurt race performance.</div>
               )}
-              {!roles || !lineup.some((id) => (roles[id] || athletes.find((a) => a.id === id)?.role) === "CAPTAIN") && (
-                <div className="mt-1 text-xs text-amber-200">Tip: set a Captain and specialist roles to trigger bonuses.</div>
-              )}
+              <div className="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-200">
+                <button
+                  onClick={() => {
+                    if (!formationLineup.length) return;
+                    setLineup(formationLineup);
+                  }}
+                  className="rounded bg-white/10 px-2 py-1 hover:bg-white/20"
+                >
+                  Apply formation lineup
+                </button>
+                <Link href="/team" className="rounded bg-white/10 px-2 py-1 hover:bg-white/20">
+                  Edit formation
+                </Link>
+                <button onClick={() => autoSelectGear()} className="rounded bg-white/10 px-2 py-1 hover:bg-white/20">
+                  Auto gear by conditions
+                </button>
+              </div>
             </div>
             <div className="text-xs text-slate-300">Lineup size: {lineup.length}</div>
           </div>
-          <div className="grid gap-3 lg:grid-cols-2">
-            <div className="rounded-lg border border-white/10 bg-slate-900/40 p-3">
-              <div className="text-xs uppercase tracking-[0.2em] text-blue-200/80 mb-2">Battle Plan</div>
-              <div className="grid gap-2">
-                {formationSlots.map((slot) => {
-                  const athleteId = slotAssignments[slot.id];
-                  const athlete = athleteId ? athletes.find((a) => a.id === athleteId) : null;
-                  return (
-                    <div
-                      key={slot.id}
-                      onDragOver={(e) => e.preventDefault()}
-                      onDrop={(e) => onDrop(slot.id, slot.role, e)}
-                      className="relative flex items-center justify-between rounded border border-white/10 bg-white/5 p-2"
-                    >
-                      <div>
-                        <div className="text-sm font-semibold text-slate-100">{slot.label}</div>
-                        <div className="text-[11px] text-slate-400">{slot.detail}</div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {athlete ? (
-                          <div className="rounded bg-blue-500/10 px-2 py-1 text-xs text-blue-100">
-                            {athlete.name}
-                          </div>
-                        ) : (
-                          <div className="rounded border border-dashed border-white/20 px-2 py-1 text-xs text-slate-400">
-                            Drop skier
-                          </div>
-                        )}
-                        {athlete && (
-                          <button
-                            onClick={() => clearSlot(slot.id)}
-                            className="text-[11px] text-amber-200 hover:text-white"
-                          >
-                            Clear
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="rounded-lg border border-white/10 bg-slate-900/40 p-3">
-              <div className="text-xs uppercase tracking-[0.2em] text-blue-200/80 mb-2">Bench & reserves</div>
-              <div className="grid gap-2">
-                {bench.map((a) => (
-                  <div
-                    key={a.id}
-                    draggable
-                    onDragStart={(e) => e.dataTransfer.setData("text/plain", a.id)}
-                    className="flex items-center justify-between rounded border border-white/10 bg-white/5 px-3 py-2 text-sm transition hover:border-blue-300/50 hover:bg-white/10"
-                  >
-                    <div>
-                      <div className="font-semibold">{a.name}</div>
-                      <div className="text-[11px] text-slate-400">
-                        {roles[a.id] || a.role} · Form {a.state.form} · Fatigue {a.state.fatigue}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => toggleLineup(a.id)}
-                      className={`rounded px-2 py-1 text-[11px] ${
-                        lineup.includes(a.id) ? "bg-blue-500 text-white" : "bg-white/10 text-slate-200"
-                      }`}
-                    >
-                      {lineup.includes(a.id) ? "In lineup" : "Toggle"}
-                    </button>
+
+          <div className="grid gap-2 md:grid-cols-2">
+            {athletes.map((a) => (
+              <label
+                key={a.id}
+                className={`flex items-center justify-between rounded-lg border px-3 py-2 text-sm transition ${
+                  lineup.includes(a.id) ? "border-blue-400 bg-blue-500/10 text-blue-100" : "border-white/10 bg-white/5 text-slate-200"
+                }`}
+              >
+                <div>
+                  <div className="font-semibold">{a.name}</div>
+                  <div className="text-xs text-slate-400">
+                    Role: {a.role} · Form {a.state.form} · Fatigue {a.state.fatigue}
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="rounded-lg border border-white/10 bg-slate-900/40 p-3">
-            <div className="text-xs uppercase tracking-[0.2em] text-blue-200/80 mb-2">Roles overview</div>
-            <div className="grid gap-2 md:grid-cols-2">
-              {athletes.map((a) => (
-                <div
-                  key={a.id}
-                  className={`flex items-center justify-between rounded-lg border px-3 py-2 text-sm transition ${
-                    lineup.includes(a.id)
-                      ? "border-blue-400 bg-blue-500/10 text-blue-100"
-                      : "border-white/10 bg-white/5 text-slate-200"
-                  }`}
-                >
-                  <div>
-                    <div className="font-semibold">{a.name}</div>
-                    <div className="text-xs text-slate-400">
-                      Base role: {a.role} · Assigned: {roles[a.id] || "Auto"}
-                    </div>
-                    <div className="mt-1 flex gap-2 text-[11px] text-slate-300">
-                      <select
-                        className="rounded bg-slate-800 px-2 py-1"
-                        value={roles[a.id] || a.role}
-                        onChange={(e) => setRoles((prev) => ({ ...prev, [a.id]: e.target.value }))}
-                      >
-                        <option value="CAPTAIN">Captain</option>
-                        <option value="CLIMBER">Climber</option>
-                        <option value="SPRINTER">Sprinter</option>
-                        <option value="DOMESTIQUE">Domestique</option>
-                      </select>
-                    </div>
-                  </div>
-                  <input
-                    type="checkbox"
-                    checked={lineup.includes(a.id)}
-                    onChange={() => toggleLineup(a.id)}
-                    className="h-4 w-4"
-                  />
                 </div>
-              ))}
-            </div>
+                <input type="checkbox" checked={lineup.includes(a.id)} onChange={() => toggleLineup(a.id)} className="h-4 w-4" />
+              </label>
+            ))}
           </div>
         </section>
       </div>

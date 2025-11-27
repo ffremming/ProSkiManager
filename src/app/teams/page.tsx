@@ -44,7 +44,7 @@ export default function TeamsPage() {
                   <div className="text-sm text-slate-300">Roster: {counts[team.id] ?? 0} skiers</div>
                   <div className="text-lg font-semibold text-slate-50">{team.name}</div>
                 </div>
-                <div className="text-xs text-slate-400">Budget ${team.budget.toLocaleString()}</div>
+                <div className="text-xs text-slate-400">Budget ${team.budget.toLocaleString("en-US")}</div>
               </div>
             </Link>
           ))}

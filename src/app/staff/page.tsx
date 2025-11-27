@@ -28,7 +28,7 @@ export default function StaffPage() {
                 <div className="text-xs text-slate-300">Skill {member.skill}</div>
               </div>
               {member.focus && <div className="text-xs text-slate-400 mt-1">Focus: {member.focus}</div>}
-              <div className="text-xs text-slate-400">Salary ${member.salary.toLocaleString()}</div>
+              <div className="text-xs text-slate-400">Salary ${member.salary.toLocaleString("en-US")}</div>
             </div>
           ))}
         </section>

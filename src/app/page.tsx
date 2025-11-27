@@ -4,6 +4,7 @@ import Link from "next/link";
 import { seasonRaces } from "../game/data/sampleData";
 import { useGameStore } from "../state/gameStore";
 import { useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { hasStarted, pastResults, startNextRace, currentWeek, racePrep, finance } = useGameStore((s) => ({
@@ -14,6 +15,7 @@ export default function Home() {
     finance: s.finance,
     racePrep: s.racePrep,
   }));
+  const router = useRouter();
 
   const gameLinks = useMemo(
     () =>
@@ -111,9 +113,9 @@ export default function Home() {
           </div>
           <div className="card">
             <div className="text-sm text-slate-300 mb-1">Finance</div>
-            <div className="text-lg font-semibold">${finance.balance.toLocaleString()} balance</div>
+            <div className="text-lg font-semibold">${finance.balance.toLocaleString("en-US")} balance</div>
             <p className="text-slate-400 text-sm mt-2">
-              Weekly net: ${(finance.weeklyIncome - finance.weeklyExpenses).toLocaleString()} · Income ${finance.weeklyIncome.toLocaleString()} / Expenses ${finance.weeklyExpenses.toLocaleString()}
+              Weekly net: ${(finance.weeklyIncome - finance.weeklyExpenses).toLocaleString("en-US")} · Income ${finance.weeklyIncome.toLocaleString("en-US")} / Expenses ${finance.weeklyExpenses.toLocaleString("en-US")}
             </p>
           </div>
           <div className="card">
@@ -135,14 +137,17 @@ export default function Home() {
                 </div>
                 {nextRace && <div className="text-slate-300 text-sm">Current week: {currentWeek}</div>}
               </div>
-              {nextRace && (
-                <button
-                  onClick={startNextRace}
-                  className="px-4 py-2 rounded-md bg-blue-500 text-white font-medium"
-                >
-                  Start next race
-                </button>
-              )}
+            {nextRace && (
+              <button
+                onClick={() => {
+                  startNextRace();
+                  router.push(`/race/${nextRace.id}`);
+                }}
+                className="px-4 py-2 rounded-md bg-blue-500 text-white font-medium"
+              >
+                Start next race
+              </button>
+            )}
             </div>
             <div className="grid md:grid-cols-2 gap-3">
               {racesToShow.map((race) => (

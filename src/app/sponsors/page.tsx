@@ -22,11 +22,11 @@ export default function SponsorsPage() {
                   <div className="text-sm font-semibold text-slate-100">{s.name}</div>
                   <div className="text-xs text-slate-400">Tier: {s.tier}</div>
                 </div>
-                <div className="text-xs text-slate-300">+${s.weeklyIncome.toLocaleString()}/wk</div>
+                <div className="text-xs text-slate-300">+${s.weeklyIncome.toLocaleString("en-US")}/wk</div>
               </div>
               {s.goal && (
                 <div className="mt-2 text-xs text-slate-300">
-                  Goal: {s.goal.description} (Week {s.goal.targetWeek}) · Bonus ${s.goal.bonus.toLocaleString()}
+                  Goal: {s.goal.description} (Week {s.goal.targetWeek}) · Bonus ${s.goal.bonus.toLocaleString("en-US")}
                 </div>
               )}
             </div>

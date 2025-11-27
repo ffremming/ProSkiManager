@@ -52,7 +52,7 @@ export type Team = {
 };
 
 export type TrainingIntensity = "EASY" | "MEDIUM" | "HARD" | "REST";
-export type TrainingFocus = "ENDURANCE" | "CLIMB" | "SPEED";
+export type TrainingFocus = "VO2MAX" | "THRESHOLD" | "MUSCULAR" | "ACCELERATION" | "SPRINT_FINISH";
 
 export type WeeklyTrainingPlan = {
   athleteId: string;
@@ -153,6 +153,25 @@ export type TransferCandidate = {
   interest: number; // 0-100 likelihood to join.
 };
 
+export type TransferRequestStatus = "PENDING" | "ACCEPTED" | "DECLINED";
+
+export type TransferRequest = {
+  id: string;
+  athleteId: string;
+  fromTeamId: string;
+  offer: number;
+  status: TransferRequestStatus;
+  week: number;
+  note?: string;
+};
+
+export type TransferAd = {
+  athleteId: string;
+  askingPrice: number;
+  weekPosted: number;
+  note?: string;
+};
+
 export type ScoutAssignment = {
   id: string;
   region: string;
@@ -179,6 +198,14 @@ export type RacePrep = {
   roles?: Record<string, Role>;
   tactic?: "PROTECT_LEADER" | "SPRINT_POINTS" | "BREAKAWAY" | "SURVIVE";
   conditions?: RaceConditions;
+  orders?: {
+    protectLeader?: boolean;
+    chaseBreaks?: boolean;
+    sprintFocus?: boolean;
+    climbFocus?: boolean;
+    aggression?: "LOW" | "MED" | "HIGH";
+    label?: string;
+  };
 };
 
 export type RaceConditions = {
@@ -249,6 +276,8 @@ export type GameState = {
   sponsors: Sponsor[];
   equipment: EquipmentInventory;
   transferList: TransferCandidate[];
+  transferRequests: TransferRequest[];
+  transferAds?: Record<string, TransferAd>;
   scoutAssignments: ScoutAssignment[];
   prospects: Prospect[];
   racePrep?: RacePrep;

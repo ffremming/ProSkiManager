@@ -8,6 +8,13 @@ export type RaceInput = {
   equipment?: EquipmentInventory;
 };
 
+export type RaceStartState = {
+  id: string;
+  distance: number;
+  energy: number;
+  laneOffset: number;
+};
+
 // Generates snapshots for a single race to drive the visual layer.
 export function simulateRace(input: RaceInput): RaceSnapshot[] {
   const snapshots: RaceSnapshot[] = [];
@@ -26,6 +33,7 @@ export function simulateRace(input: RaceInput): RaceSnapshot[] {
   const totalDistance = input.course.totalDistance;
   const tactic = input.prep?.tactic || "PROTECT_LEADER";
   const roleMap: Record<string, string> = input.prep?.roles || {};
+  const orders = input.prep?.orders;
   const gear = resolveGear(input);
   const conditions = input.conditions;
 
@@ -33,6 +41,7 @@ export function simulateRace(input: RaceInput): RaceSnapshot[] {
 
   while (state.some((s) => s.distance < totalDistance)) {
     const groups = computeGroups(state);
+    state = state.map((s) => ({ ...s, laneOffset: groups.lanes[s.id] ?? s.laneOffset }));
     const snapshotAthletes = state.map((s) => ({
       id: s.id,
       distance: s.distance,
@@ -47,7 +56,7 @@ export function simulateRace(input: RaceInput): RaceSnapshot[] {
     });
 
     state = state.map((s) =>
-      advanceAthlete(s, dt, input.course, totalDistance, tactic, pacing, gear, conditions, groups, roleMap)
+      advanceAthlete(s, dt, input.course, totalDistance, tactic, pacing, gear, conditions, groups, roleMap, orders)
     );
     t += dt;
   }
@@ -64,6 +73,51 @@ type AthleteRuntime = {
   effort: number;
 };
 
+export function continueRace(input: RaceInput & { startState: RaceStartState[]; startTime?: number }): RaceSnapshot[] {
+  const snapshots: RaceSnapshot[] = [];
+  const dt = 2;
+  const totalDistance = input.course.totalDistance;
+  const tactic = input.prep?.tactic || "PROTECT_LEADER";
+  const roleMap: Record<string, string> = input.prep?.roles || {};
+  const orders = input.prep?.orders;
+  const pacing = input.prep?.pacing || "STEADY";
+  const gear = resolveGear(input);
+  const conditions = input.conditions;
+  const athleteMap = Object.fromEntries(input.athletes.map((a) => [a.id, a]));
+
+  let t = input.startTime || 0;
+  let state: AthleteRuntime[] = input.startState
+    .map((s) => ({
+      id: s.id,
+      distance: s.distance,
+      energy: s.energy,
+      laneOffset: s.laneOffset,
+      athlete: athleteMap[s.id],
+      effort: 1,
+    }))
+    .filter((s) => s.athlete);
+
+  while (state.some((s) => s.distance < totalDistance)) {
+    const groups = computeGroups(state);
+    state = state.map((s) => ({ ...s, laneOffset: groups.lanes[s.id] ?? s.laneOffset }));
+    const snapshotAthletes = state.map((s) => ({
+      id: s.id,
+      distance: s.distance,
+      laneOffset: s.laneOffset,
+      energy: s.energy,
+      effort: s.effort,
+      groupId: groups.map[s.id],
+    }));
+    snapshots.push({ t, athletes: snapshotAthletes });
+    state = state.map((s) =>
+      advanceAthlete(s, dt, input.course, totalDistance, tactic, pacing, gear, conditions, groups, roleMap, orders)
+    );
+    t += dt;
+  }
+
+  return snapshots;
+}
+
 function advanceAthlete(
   state: AthleteRuntime,
   dt: number,
@@ -74,7 +128,8 @@ function advanceAthlete(
   gear: GearModifiers,
   conditions: RaceConditions | undefined,
   groups: ReturnType<typeof computeGroups>,
-  roleMap: Record<string, string>
+  roleMap: Record<string, string>,
+  orders?: RacePrep["orders"]
 ): AthleteRuntime {
   const stats = state.athlete.baseStats;
   const { form, fatigue, morale } = state.athlete.state;
@@ -100,8 +155,9 @@ function advanceAthlete(
   // Drafting and group effects
   const groupId = groups.map[state.id];
   const groupInfo = groups.info[groupId] || { leader: state.id, size: 1 };
+  const aheadDistance = groups.laneAhead[state.id];
   const isLeader = groupInfo.leader === state.id;
-  const packBonus = isLeader ? 0.97 : 1.05;
+  const packBonus = isLeader ? 0.98 : 1.06;
   power *= packBonus;
 
   // Tactic influence
@@ -117,6 +173,19 @@ function advanceAthlete(
   if (role === "CLIMBER" && segment.isClimb) power *= 1.08;
   if (role === "DOMESTIQUE" && groupInfo.size > 1 && !isLeader) power *= 1.03;
 
+  if (orders?.protectLeader && role === "DOMESTIQUE" && groupInfo.size > 1) {
+    power *= 1.02;
+  }
+  if (orders?.sprintFocus && segment.isSprint && role === "SPRINTER") {
+    power *= 1.05;
+  }
+  if (orders?.climbFocus && segment.isClimb && role === "CLIMBER") {
+    power *= 1.05;
+  }
+
+  if (orders?.aggression === "LOW") power *= 0.97;
+  if (orders?.aggression === "HIGH") power *= 1.03;
+
   // Gear and conditions influence
   power *= gear.glideMod;
   const energyPenalty = gear.gripMod;
@@ -130,16 +199,27 @@ function advanceAthlete(
 
   power *= (state.energy / 100) ** 0.7;
 
-  const speed = Math.max(0.5, power * 7); // m/s tuned later.
+  let speed = Math.max(0.5, power * 7); // m/s tuned later.
 
-  const energyCost =
+  const energyCostBase =
     dt *
     0.08 *
     segment.difficulty *
     (1 + Math.max(0, segment.gradient) / 10) *
     (pacing === "AGGRESSIVE" ? 1.2 : pacing === "DEFENSIVE" ? 0.85 : 1);
+  const draftCost = isLeader ? 1.08 : 0.9;
+  const energyCost = energyCostBase * draftCost;
 
-  const distance = Math.min(totalDistance, state.distance + speed * dt);
+  let distance = Math.min(totalDistance, state.distance + speed * dt);
+  const minGap = 0.8;
+  if (aheadDistance !== undefined) {
+    // Keep a small gap but avoid full stalls.
+    const limit = Math.max(state.distance + 0.5, aheadDistance - minGap);
+    if (distance > limit) {
+      distance = limit;
+      speed = Math.max(1.2, (distance - state.distance) / dt);
+    }
+  }
   const energy = clamp(state.energy - energyCost - energyPenalty, 0, 100);
 
   return { ...state, distance, energy, effort };
@@ -172,6 +252,10 @@ function computeGroups(state: AthleteRuntime[]) {
   const sorted = [...state].sort((a, b) => b.distance - a.distance);
   const map: Record<string, number> = {};
   const info: Record<number, { leader: string; size: number }> = {};
+  const lanes: Record<string, number> = {};
+  const laneIdx: Record<string, number> = {};
+  const laneAhead: Record<string, number> = {};
+  const lastInLaneDistance: Record<number, number> = { 0: undefined as any, 1: undefined as any, 2: undefined as any };
   let groupId = 0;
   let lastDistance = Infinity;
 
@@ -186,15 +270,26 @@ function computeGroups(state: AthleteRuntime[]) {
       info[groupId] = { leader: s.id, size: 0 };
     }
     info[groupId].size += 1;
+
+    // Lane assignment: keep narrow formation with 3 classic tracks.
+    const orderInGroup = info[groupId].size - 1;
+    const lane = orderInGroup % 3; // 0,1,2 repeat
+    const offsets = [-0.6, 0, 0.6];
+    lanes[s.id] = offsets[lane];
+    laneIdx[s.id] = lane;
+
+    // Since sorted is distance-desc, the previous seen in this lane is directly ahead.
+    const prevDist = lastInLaneDistance[lane];
+    if (prevDist !== undefined) {
+      laneAhead[s.id] = prevDist;
+    }
+    lastInLaneDistance[lane] = s.distance;
   });
 
-  return { map, info };
+  return { map, info, lanes, laneIdx, laneAhead };
 }
 
 function mapLaneOffset(idx: number) {
-  const laneSpacing = 0.7;
-  const lane = idx % 6;
-  const side = lane % 2 === 0 ? -1 : 1;
-  const magnitude = Math.floor(lane / 2) + 0.5;
-  return side * magnitude * laneSpacing;
+  const offsets = [-0.6, 0, 0.6];
+  return offsets[idx % offsets.length];
 }

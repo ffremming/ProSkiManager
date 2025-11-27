@@ -13,6 +13,8 @@ import {
   TransferCandidate,
   ScoutAssignment,
   RaceConditions,
+  TransferRequest,
+  TransferAd,
 } from "../domain/types";
 import { GameDataGateway, getGameDataGateway, setGameDataGateway } from "./gameDataGateway";
 import { athletePool, teamNames } from "./athletePool";
@@ -247,6 +249,8 @@ type SeedDataSnapshot = {
   sponsors: Sponsor[];
   equipment: EquipmentInventory;
   transferList: TransferCandidate[];
+  transferRequests: TransferRequest[];
+  transferAds: Record<string, TransferAd>;
   scoutAssignments: ScoutAssignment[];
   prospects: Prospect[];
   raceCourses: Record<string, RaceCourse>;
@@ -265,6 +269,8 @@ const seedSnapshot: SeedDataSnapshot = {
   sponsors: defaultSponsors,
   equipment: defaultEquipment,
   transferList: defaultTransferList,
+  transferRequests: [],
+  transferAds: {},
   scoutAssignments: defaultScoutAssignments,
   prospects: defaultProspects,
   raceCourses,
@@ -341,6 +347,8 @@ export function buildInitialStateFromSnapshot(snapshot: SeedDataSnapshot, player
     sponsors: snapshot.sponsors.map((s) => ({ ...s, goal: s.goal ? { ...s.goal } : undefined })),
     equipment: { items: snapshot.equipment.items.map((i) => ({ ...i })) },
     transferList: snapshot.transferList.map((t) => ({ ...t })),
+    transferRequests: snapshot.transferRequests.map((t) => ({ ...t })),
+    transferAds: { ...snapshot.transferAds },
     scoutAssignments: snapshot.scoutAssignments.map((s) => ({ ...s })),
     prospects: snapshot.prospects.map((p) => ({ ...p })),
     racePrep: undefined,
@@ -396,6 +404,8 @@ export async function loadInitialState(playerTeamId?: string, gateway: GameDataG
     sponsors,
     equipment,
     transferList,
+    transferRequests: [],
+    transferAds: {},
     scoutAssignments,
     prospects,
     raceCourses: raceCoursesData,

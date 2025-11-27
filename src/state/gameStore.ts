@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { baseInitialState, createInitialState, loadInitialState, raceCourses, raceConditions } from "../game/data/sampleData";
-import { Athlete, GameState, Role, TransferCandidate } from "../game/domain/types";
+import { Athlete, GameState, Role, TransferCandidate, TransferRequest } from "../game/domain/types";
 import { applyWeeklyFinance } from "../game/simulation/financeEngine";
 import { applyWeeklyTraining } from "../game/simulation/trainingEngine";
 import { simulateRace } from "../game/simulation/raceEngine";
@@ -18,10 +18,13 @@ type GameActions = {
   endGame: () => void;
   refreshTransferMarket: () => void;
   buyTransferTarget: (athleteId: string) => void;
-  listPlayerForTransfer: (athleteId: string, askingPrice: number) => void;
+  listPlayerForTransfer: (athleteId: string, askingPrice: number, note?: string) => void;
+  acceptTransferRequest: (requestId: string) => void;
+  declineTransferRequest: (requestId: string) => void;
   setFormation: (teamId: string, slots: Record<string, string>, slotRoles: Record<string, Role>) => void;
   setStaff?: (staff: GameState["staff"]) => void;
   setRacePrep: (prep: GameState["racePrep"]) => void;
+  setActiveRace?: (activeRace: GameState["activeRace"]) => void;
 };
 
 type GameStore = GameState & GameActions;
@@ -227,9 +230,15 @@ export const useGameStore = create<GameStore>()(
       },
 
       newGame: async (playerTeamId) => {
-        const next = await loadInitialState(playerTeamId);
-        next.hasStarted = true;
-        set(() => ({ ...next }));
+        try {
+          const next = await loadInitialState(playerTeamId);
+          next.hasStarted = true;
+          set(() => ({ ...next }));
+        } catch (err) {
+          const fallback = createInitialState(playerTeamId);
+          fallback.hasStarted = true;
+          set(() => ({ ...fallback }));
+        }
       },
 
       endGame: () => {
@@ -241,11 +250,12 @@ export const useGameStore = create<GameStore>()(
         set((state) => {
           const playerTeamId = state.playerTeamId || Object.keys(state.teams)[0];
           const candidates = buildTransferCandidates(state, playerTeamId);
-          return { ...state, transferList: candidates };
+          const transferRequests = generateIncomingRequests(state, playerTeamId);
+          return { ...state, transferList: candidates, transferRequests };
         });
       },
 
-      listPlayerForTransfer: (athleteId, askingPrice) => {
+      listPlayerForTransfer: (athleteId, askingPrice, note) => {
         set((state) => {
           const athlete = state.athletes[athleteId];
           if (!athlete) return state;
@@ -259,7 +269,9 @@ export const useGameStore = create<GameStore>()(
           const transferList = exists
             ? state.transferList.map((t) => (t.athleteId === athleteId ? updated : t))
             : [...state.transferList, updated];
-          return { ...state, transferList };
+          const transferAds = { ...(state.transferAds || {}) };
+          transferAds[athleteId] = { athleteId, askingPrice, weekPosted: state.currentWeek, note };
+          return { ...state, transferList, transferAds };
         });
       },
 
@@ -309,12 +321,81 @@ export const useGameStore = create<GameStore>()(
         });
       },
 
+      acceptTransferRequest: (requestId) => {
+        set((state) => {
+          const playerTeamId = state.playerTeamId || Object.keys(state.teams)[0];
+          const request = state.transferRequests.find((r) => r.id === requestId);
+          if (!request) return state;
+          const athlete = state.athletes[request.athleteId];
+          const buyerTeam = state.teams[request.fromTeamId];
+          const playerTeam = state.teams[playerTeamId];
+          if (!athlete || athlete.teamId !== playerTeamId || !buyerTeam || !playerTeam) return state;
+
+          const finance = {
+            ...state.finance,
+            balance: state.finance.balance + request.offer,
+            history: [
+              ...state.finance.history,
+              {
+                week: state.currentWeek,
+                delta: request.offer,
+                reason: `Sold ${athlete.name} to ${buyerTeam.name}`,
+              },
+            ],
+          };
+
+          const teams = {
+            ...state.teams,
+            [playerTeamId]: { ...playerTeam, athletes: playerTeam.athletes.filter((id) => id !== athlete.id) },
+            [buyerTeam.id]: {
+              ...buyerTeam,
+              athletes: Array.from(new Set([...buyerTeam.athletes, athlete.id])),
+            },
+          };
+
+          const updatedAthlete: Athlete = {
+            ...athlete,
+            teamId: buyerTeam.id,
+            state: { ...athlete.state, morale: clamp(athlete.state.morale + 3, 0, 100) },
+          };
+
+          const transferRequests = state.transferRequests.map((r) =>
+            r.id === requestId ? { ...r, status: "ACCEPTED" } : r
+          );
+          const transferAds = { ...(state.transferAds || {}) };
+          delete transferAds[athlete.id];
+
+          return {
+            ...state,
+            finance,
+            teams,
+            athletes: { ...state.athletes, [athlete.id]: updatedAthlete },
+            transferList: state.transferList.filter((c) => c.athleteId !== athlete.id),
+            transferRequests,
+            transferAds,
+          };
+        });
+      },
+
+      declineTransferRequest: (requestId) => {
+        set((state) => ({
+          ...state,
+          transferRequests: state.transferRequests.map((r) =>
+            r.id === requestId ? { ...r, status: "DECLINED" } : r
+          ),
+        }));
+      },
+
       setStaff: (staff) => {
         set((state) => ({ ...state, staff }));
       },
 
       setRacePrep: (prep) => {
         set((state) => ({ ...state, racePrep: prep }));
+      },
+
+      setActiveRace: (activeRace) => {
+        set((state) => ({ ...state, activeRace }));
       },
 
       setFormation: (teamId, slots, slotRoles) => {
@@ -348,6 +429,19 @@ export const useGameStore = create<GameStore>()(
     }),
     {
       name: "ski-manager-save",
+      version: 2,
+      migrate: (persisted: any) => {
+        if (!persisted || typeof persisted !== "object") return baseInitialState;
+        const hasCoreData =
+          persisted.teams &&
+          Object.keys(persisted.teams).length &&
+          persisted.athletes &&
+          Object.keys(persisted.athletes).length &&
+          Array.isArray(persisted.seasonRaces) &&
+          persisted.seasonRaces.length;
+        if (!hasCoreData) return { ...baseInitialState };
+        return persisted as GameState;
+      },
       partialize: (state) => {
         // Avoid persisting heavy race snapshots to stay within storage limits.
         const { activeRace, ...rest } = state;
@@ -398,6 +492,42 @@ function computeMarketValue(athlete: Athlete, standingsPoints: Record<string, nu
   const dynamic = performance * 500; // dynamic price uplift based on last season points.
   const base = 10000 + statsScore * 40 + potentialBoost;
   return base * ageCurve + dynamic;
+}
+
+function generateIncomingRequests(state: GameState, playerTeamId: string): TransferRequest[] {
+  const existing = state.transferRequests || [];
+  const pendingByAthlete = new Set(existing.filter((r) => r.status === "PENDING").map((r) => r.athleteId));
+  const roster = Object.values(state.athletes).filter((a) => a.teamId === playerTeamId);
+  const otherTeams = Object.values(state.teams).filter((t) => t.id !== playerTeamId);
+  if (!otherTeams.length || !roster.length) return existing;
+
+  const requests: TransferRequest[] = [...existing];
+  const advertised = roster.filter((a) => state.transferAds?.[a.id]);
+  const candidates = advertised.length
+    ? advertised
+    : [...roster].sort((a, b) => b.potential - a.potential).slice(0, 4);
+
+  candidates.forEach((athlete, idx) => {
+    if (pendingByAthlete.has(athlete.id)) return;
+    const ad = state.transferAds?.[athlete.id];
+    const marketValue = computeMarketValue(athlete, state.standings.athletes);
+    const appetite = clamp(50 + athlete.potential / 2 - athlete.state.fatigue / 3 + (ad ? 15 : 0), 5, 95);
+    if (Math.random() * 100 > appetite) return;
+    const offerMultiplier = 0.9 + Math.random() * 0.25 + (ad ? 0.05 : 0);
+    const fromTeam = otherTeams[(idx + Math.floor(Math.random() * otherTeams.length)) % otherTeams.length];
+    const id = `req-${athlete.id}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    requests.push({
+      id,
+      athleteId: athlete.id,
+      fromTeamId: fromTeam.id,
+      offer: Math.round(marketValue * offerMultiplier),
+      status: "PENDING",
+      week: state.currentWeek,
+      note: ad?.note || "We believe they fit our roster.",
+    });
+  });
+
+  return requests;
 }
 
 function applyFatigueHealth(state: GameState): GameState {

@@ -2,6 +2,9 @@
 
 This repository sets up the core domain and simulation logic for a Ski Classics–style management game (think Pro Cycling Manager but for long-distance skiing) with a web front end and a 3D race viewer powered by three.js / `@react-three/fiber`.
 
+![AScreenshot of race view](docs/images/image.png "Screenshot of race view")
+
+
 ## What’s here
 - **Domain models**: `src/game/domain/types.ts` for athletes, teams, finance, training, races, snapshots.
 - **Simulation engines**:

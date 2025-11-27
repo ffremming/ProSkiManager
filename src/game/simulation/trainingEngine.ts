@@ -55,14 +55,22 @@ function applyPlan(athlete: Athlete, plan: WeeklyTrainingPlan, state: GameState)
 
     if (session.intensity !== "REST") {
       switch (session.focus) {
-        case "ENDURANCE":
-          statGain.endurance += 0.2 * coachBonus * healthPenalty;
+        case "VO2MAX":
+          statGain.endurance += 0.25 * coachBonus * healthPenalty;
           break;
-        case "CLIMB":
-          statGain.climbing += 0.2 * coachBonus * healthPenalty;
+        case "THRESHOLD":
+          statGain.endurance += 0.18 * coachBonus * healthPenalty;
+          statGain.flat += 0.1 * coachBonus * healthPenalty;
           break;
-        case "SPEED":
-          statGain.sprint += 0.2 * coachBonus * healthPenalty;
+        case "MUSCULAR":
+          statGain.climbing += 0.22 * coachBonus * healthPenalty;
+          break;
+        case "ACCELERATION":
+          statGain.sprint += 0.12 * coachBonus * healthPenalty;
+          statGain.flat += 0.12 * coachBonus * healthPenalty;
+          break;
+        case "SPRINT_FINISH":
+          statGain.sprint += 0.25 * coachBonus * healthPenalty;
           break;
       }
     }
