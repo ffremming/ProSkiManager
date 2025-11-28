@@ -3,6 +3,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { baseInitialState, createInitialState, loadInitialState, raceCourses, raceConditions } from "../game/data/sampleData";
 import { Athlete, GameState, Role, TransferCandidate, TransferRequest } from "../game/domain/types";
+import generatedTeams from "../game/data/generated/teams.generated.json";
+import generatedAthleteImages from "../game/data/generated/athleteImages.generated.json";
 import { applyWeeklyFinance } from "../game/simulation/financeEngine";
 import { applyWeeklyTraining } from "../game/simulation/trainingEngine";
 import { simulateRace } from "../game/simulation/raceEngine";
@@ -231,11 +233,11 @@ export const useGameStore = create<GameStore>()(
 
       newGame: async (playerTeamId) => {
         try {
-          const next = await loadInitialState(playerTeamId);
+          const next = applyDecorations(await loadInitialState(playerTeamId));
           next.hasStarted = true;
           set(() => ({ ...next }));
         } catch (err) {
-          const fallback = createInitialState(playerTeamId);
+          const fallback = applyDecorations(createInitialState(playerTeamId));
           fallback.hasStarted = true;
           set(() => ({ ...fallback }));
         }
@@ -429,7 +431,7 @@ export const useGameStore = create<GameStore>()(
     }),
     {
       name: "ski-manager-save",
-      version: 2,
+      version: 3,
       migrate: (persisted: any) => {
         if (!persisted || typeof persisted !== "object") return baseInitialState;
         const hasCoreData =
@@ -447,9 +449,77 @@ export const useGameStore = create<GameStore>()(
         const { activeRace, ...rest } = state;
         return rest;
       },
+      migrate: (persisted: any) => {
+        if (!persisted || typeof persisted !== "object") return baseInitialState;
+        const hasCoreData =
+          persisted.teams &&
+          Object.keys(persisted.teams).length &&
+          persisted.athletes &&
+          Object.keys(persisted.athletes).length &&
+          Array.isArray(persisted.seasonRaces) &&
+          persisted.seasonRaces.length;
+        const clean = hasCoreData ? persisted : { ...baseInitialState };
+        return applyDecorations(clean as GameState);
+      },
     }
   )
 );
+
+function applyDecorations(state: GameState): GameState {
+  const withLogos = applyTeamLogos(state);
+  return applyAthletePhotos(withLogos);
+}
+
+function applyTeamLogos(state: GameState): GameState {
+  const teamLogoMap = new Map<string, string>();
+  (generatedTeams as any[]).forEach((t) => {
+    if (t.name) {
+      const slug = slugify(t.name);
+      teamLogoMap.set(slug, `/team-logos/${slug}.png`);
+    }
+  });
+  const teams = { ...state.teams };
+  Object.values(teams).forEach((team: any) => {
+    if (!team?.name) return;
+    const slug = slugify(team.name);
+    const logo = teamLogoMap.get(slug);
+    if (logo) team.logo = logo;
+  });
+  return { ...state, teams };
+}
+
+function applyAthletePhotos(state: GameState): GameState {
+  const imagesBySlug = new Map<string, string>();
+  const normalizeLocal = (loc: string) => {
+    if (!loc) return loc;
+    const cleaned = loc.replace(/^.*public\//, "").replace(/^\/?/, "/");
+    return cleaned.startsWith("/public/") ? cleaned.replace("/public", "") : cleaned;
+  };
+  (generatedAthleteImages as any[]).forEach((p) => {
+    const key = slugify(p.athleteId || p.id || p.name || "");
+    if (!key) return;
+    if (p.local) imagesBySlug.set(key, normalizeLocal(p.local));
+    else if (p.url) imagesBySlug.set(key, p.url);
+  });
+  const athletes = { ...state.athletes };
+  Object.values(athletes).forEach((ath: any) => {
+    if (!ath?.name) return;
+    const slug = slugify(ath.name);
+    const byId = imagesBySlug.get(slugify(ath.id));
+    const img = imagesBySlug.get(slug) || byId;
+    if (img) ath.photo = img;
+  });
+  return { ...state, athletes };
+}
+
+function slugify(str: string) {
+  return (str || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
 
 function pickTopLineup(athletes: Athlete[], limit = 8): string[] {
   const sorted = [...athletes].sort((a, b) => {

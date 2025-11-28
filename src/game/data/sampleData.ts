@@ -18,6 +18,9 @@ import {
 } from "../domain/types";
 import { GameDataGateway, getGameDataGateway, setGameDataGateway } from "./gameDataGateway";
 import { athletePool, teamNames } from "./athletePool";
+import generatedSkiers from "./generated/skiers.generated.json";
+import generatedTeams from "./generated/teams.generated.json";
+import generatedAthleteImages from "./generated/athleteImages.generated.json";
 
 const okState = {
   form: 0,
@@ -50,6 +53,50 @@ function buildTeams(): { teams: Record<string, Team>; athletes: Record<string, A
     baseAthletes[a.id] = { ...a, gender, state: { ...okState } };
   });
 
+  // Merge metadata from generated skiers (name/born/ranking) onto existing athletes by slug of name.
+  const byName = Object.fromEntries(
+    Object.values(baseAthletes).map((a) => [slugify(a.name), a.id])
+  );
+  const imagesBySlug = new Map<string, string>();
+  (generatedAthleteImages as any[]).forEach((p) => {
+    const key = slugify(p.athleteId || p.id || p.name || "");
+    if (!key) return;
+    const normalizeLocal = (loc: string) => {
+      if (!loc) return loc;
+      // strip any absolute prefixes and /public segment
+      const cleaned = loc.replace(/^.*public\//, "").replace(/^\/?/, "/");
+      return cleaned.startsWith("/public/") ? cleaned.replace("/public", "") : cleaned;
+    };
+    if (p.local) {
+      imagesBySlug.set(key, normalizeLocal(p.local));
+    } else if (p.url) {
+      imagesBySlug.set(key, p.url);
+    }
+  });
+
+  (generatedSkiers as any[]).forEach((s) => {
+    const slug = slugify(s.name || "");
+    const id = byName[slug];
+    if (id && baseAthletes[id]) {
+      baseAthletes[id] = {
+        ...baseAthletes[id],
+        // Keep stats; update name if needed.
+        name: s.name || baseAthletes[id].name,
+        photo: imagesBySlug.get(slug) || imagesBySlug.get(slugify(id)) || (baseAthletes[id] as any).photo,
+        // Store extra info in traits for quick display.
+        traits: Array.from(
+          new Set([
+            ...(baseAthletes[id].traits || []),
+            s.ranking ? `Ranking: ${s.ranking}` : null,
+            s.proTourEvents ? `Pro Tour: ${s.proTourEvents}` : null,
+            s.challengers ? `Challengers: ${s.challengers}` : null,
+            s.born ? `Born: ${s.born}` : null,
+          ].filter(Boolean) as string[])
+        ),
+      };
+    }
+  });
+
   const teams: Record<string, Team> = {};
   Object.entries(teamNames).forEach(([teamId, teamName]) => {
     const roster = athletePool.filter((a) => a.teamId === teamId).map((a) => a.id);
@@ -62,7 +109,33 @@ function buildTeams(): { teams: Record<string, Team>; athletes: Record<string, A
     };
   });
 
+  // Inject logos from generated teams if downloaded.
+  const teamLogoMap = new Map<string, string>();
+  (generatedTeams as any[]).forEach((t) => {
+    if (t.name) {
+      const slug = slugify(t.name);
+      teamLogoMap.set(slug, `/team-logos/${slug}.png`);
+    }
+  });
+
+  Object.values(teams).forEach((team) => {
+    const slug = slugify(team.name);
+    const logo = teamLogoMap.get(slug);
+    if (logo) {
+      (team as any).logo = logo;
+    }
+  });
+
   return { teams, athletes: baseAthletes };
+}
+
+function slugify(str: string) {
+  return (str || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
 }
 
 export function pickRandomUnderdogTeam(teamIds: string[]) {

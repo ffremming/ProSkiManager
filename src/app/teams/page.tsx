@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { useGameStore } from "../../state/gameStore";
+import { TeamLogo } from "../../components/team/TeamLogo";
 
 export default function TeamsPage() {
   const { teams, counts } = useGameStore((state) => {
@@ -39,10 +40,13 @@ export default function TeamsPage() {
               href={`/team/${team.id}`}
               className="card border border-white/10 bg-white/5 p-4 shadow-lg shadow-blue-900/20 transition hover:-translate-y-1 hover:border-blue-400/50 hover:bg-white/10"
             >
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-sm text-slate-300">Roster: {counts[team.id] ?? 0} skiers</div>
-                  <div className="text-lg font-semibold text-slate-50">{team.name}</div>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <TeamLogo team={team} size={40} />
+                  <div>
+                    <div className="text-sm text-slate-300">Roster: {counts[team.id] ?? 0} skiers</div>
+                    <div className="text-lg font-semibold text-slate-50">{team.name}</div>
+                  </div>
                 </div>
                 <div className="text-xs text-slate-400">Budget ${team.budget.toLocaleString("en-US")}</div>
               </div>

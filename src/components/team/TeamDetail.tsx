@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Athlete, Role } from "../../game/domain/types";
 import { useGameStore } from "../../state/gameStore";
+import { useHasHydrated } from "../../state/useHasHydrated";
+import { TeamLogo } from "./TeamLogo";
 
 type Props = {
   teamId?: string;
@@ -11,6 +13,9 @@ type Props = {
 };
 
 export function TeamDetail({ teamId, showBackLink }: Props) {
+  const hydrated = useHasHydrated();
+  if (!hydrated) return null;
+
   const { team, athletes, standings, formation, setFormation, playerTeamId } = useGameStore((state) => {
     const id = teamId || state.playerTeamId || Object.keys(state.teams)[0];
     const t = state.teams[id];
@@ -120,17 +125,20 @@ export function TeamDetail({ teamId, showBackLink }: Props) {
     <main className="min-h-screen bg-gradient-to-b from-[#0b1021] via-[#0c1224] to-[#0f1a32] px-6 py-10 text-slate-100">
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <header className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-[0.38em] text-blue-200/80">Team</p>
-            <h1 className="text-3xl font-semibold">{team.name}</h1>
-            <p className="text-slate-300">
-              {athletes.length} skiers · Budget ${team.budget.toLocaleString()}
-            </p>
-            {showBackLink && (
-              <Link href="/teams" className="text-sm text-blue-300 underline">
-                Back to all teams
-              </Link>
-            )}
+          <div className="flex items-center gap-3">
+            <TeamLogo team={team} size={48} />
+            <div>
+              <p className="text-xs uppercase tracking-[0.38em] text-blue-200/80">Team</p>
+              <h1 className="text-3xl font-semibold">{team.name}</h1>
+              <p className="text-slate-300">
+                {athletes.length} skiers · Budget ${team.budget.toLocaleString()}
+              </p>
+              {showBackLink && (
+                <Link href="/teams" className="text-sm text-blue-300 underline">
+                  Back to all teams
+                </Link>
+              )}
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <ActionButton href="/race/race-1" label="Set race lineup" />
@@ -210,12 +218,29 @@ export function TeamDetail({ teamId, showBackLink }: Props) {
                   onDragStart={(e) => e.dataTransfer.setData("text/plain", a.id)}
                   className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm transition hover:border-blue-300/50 hover:bg-white/10"
                 >
-                  <div>
-                    <div className="font-semibold">{a.name}</div>
-                    <div className="text-[11px] text-slate-400">
-                      {a.role} · Form {a.state.form} · Fatigue {a.state.fatigue}
+                  <div className="flex items-center gap-2">
+                    {a.photo ? (
+                      <img
+                        src={a.photo as string}
+                        alt={a.name}
+                        className="h-10 w-10 rounded-full object-cover bg-white/10"
+                        loading="lazy"
+                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+                      />
+                    ) : (
+                      <div className="h-10 w-10 rounded-full bg-white/10" />
+                    )}
+                    <div>
+                      <div className="font-semibold">
+                        <Link href={`/athlete/${a.id}`} className="underline text-blue-200 hover:text-blue-100">
+                          {a.name}
+                        </Link>
+                      </div>
+                      <div className="text-[11px] text-slate-400">
+                        {a.role} · Form {a.state.form} · Fatigue {a.state.fatigue}
+                      </div>
+                      <MiniStats athlete={a} />
                     </div>
-                    <MiniStats athlete={a} />
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="rounded bg-white/10 px-2 py-1 text-[11px] text-slate-200">Drag to assign</span>
@@ -227,32 +252,47 @@ export function TeamDetail({ teamId, showBackLink }: Props) {
         </section>
         )}
 
-        {!isPlayerTeam && (
-          <section className="card border border-white/10 bg-white/5 p-4 shadow-lg shadow-blue-900/20">
-            <div className="flex items-center justify-between pb-4">
-              <div>
-                <div className="text-sm uppercase tracking-wide text-slate-300">Roster</div>
-                <div className="text-lg font-semibold text-slate-50">Skiers</div>
-              </div>
-              <div className="text-sm text-slate-400">{athletes.length} skiers · Team points {standings.teams[team.id] || 0}</div>
+        <section className="card border border-white/10 bg-white/5 p-4 shadow-lg shadow-blue-900/20">
+          <div className="flex items-center justify-between pb-4">
+            <div>
+              <div className="text-sm uppercase tracking-wide text-slate-300">Roster</div>
+              <div className="text-lg font-semibold text-slate-50">Skiers</div>
             </div>
-            <div className="grid gap-3 md:grid-cols-2">
-              {athletes.map((a) => (
-                <div key={a.id} className="rounded-lg border border-white/10 bg-slate-900/50 p-3">
-                  <div className="flex items-center justify-between">
+            <div className="text-sm text-slate-400">{athletes.length} skiers · Team points {standings.teams[team.id] || 0}</div>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {athletes.map((a) => (
+              <div key={a.id} className="rounded-lg border border-white/10 bg-slate-900/50 p-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    {a.photo ? (
+                      <img
+                        src={a.photo as string}
+                        alt={a.name}
+                        className="h-10 w-10 rounded-full object-cover bg-white/10"
+                        loading="lazy"
+                        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+                      />
+                    ) : (
+                      <div className="h-10 w-10 rounded-full bg-white/10" />
+                    )}
                     <div>
-                      <div className="text-sm font-semibold text-slate-100">{a.name}</div>
+                      <div className="text-sm font-semibold text-slate-100">
+                        <Link href={`/athlete/${a.id}`} className="underline text-blue-200 hover:text-blue-100">
+                          {a.name}
+                        </Link>
+                      </div>
                       <div className="text-xs text-slate-400">Age {a.age} · Role {a.role}</div>
                     </div>
-                    <div className="text-xs text-slate-400">Pts {standings.athletes[a.id] || 0}</div>
                   </div>
-                  <MiniStats athlete={a} />
-                  <CompactStatGrid athlete={a} />
+                  <div className="text-xs text-slate-400">Pts {standings.athletes[a.id] || 0}</div>
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
+                <MiniStats athlete={a} />
+                <CompactStatGrid athlete={a} />
+              </div>
+            ))}
+          </div>
+        </section>
 
       </div>
     </main>
@@ -408,7 +448,11 @@ function FormationSlot({
         {athlete ? (
           <>
             <div className="flex-1">
-              <div className="text-sm font-semibold text-slate-50">{athlete.name}</div>
+              <div className="text-sm font-semibold text-slate-50">
+                <Link href={`/athlete/${athlete.id}`} className="underline text-blue-200 hover:text-blue-100">
+                  {athlete.name}
+                </Link>
+              </div>
               <MiniStats athlete={athlete} />
             </div>
             <button onClick={() => onClear(slot.id)} className="text-[11px] text-amber-200 hover:text-white">

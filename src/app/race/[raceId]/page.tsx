@@ -4,12 +4,16 @@ import React from "react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useGameStore } from "../../../state/gameStore";
+import { useHasHydrated } from "../../../state/useHasHydrated";
 import { RaceCanvas } from "../../../components/race/RaceCanvas";
 import { RaceHud } from "../../../components/race/RaceHud";
 import { raceCourses } from "../../../game/data/sampleData";
 import { RaceSnapshot } from "../../../game/domain/types";
 
 export default function RacePage({ params }: { params: { raceId: string } }) {
+  const hydrated = useHasHydrated();
+  if (!hydrated) return null;
+
   const { activeRace, startRace, finishRace, teams, playerTeamId, athletes, standings, pastResults, racePrep, setRacePrep } =
     useGameStore((state) => ({
       activeRace: state.activeRace,
@@ -420,7 +424,22 @@ export default function RacePage({ params }: { params: { raceId: string } }) {
                 <span className="text-xs text-slate-400">
                   {idx + 1} {a.groupId !== undefined ? `· G${a.groupId}` : ""}
                 </span>
-                <span>{athletes[a.id]?.name || a.id}</span>
+                <div className="flex items-center gap-2">
+                  {((teams[athletes[a.id]?.teamId || ""] as any)?.logo) ? (
+                    <img
+                      src={(teams[athletes[a.id]?.teamId || ""] as any)?.logo as string}
+                      alt="team logo"
+                      className="h-5 w-5 rounded-full object-contain bg-white/10"
+                      loading="lazy"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  ) : null}
+                  <Link href={`/athlete/${a.id}`} className="underline text-blue-200 hover:text-blue-100">
+                    {athletes[a.id]?.name || a.id}
+                  </Link>
+                </div>
               </div>
               <span className="text-xs text-slate-400">
                 {Math.round(a.distance / 100) / 10} km · {idx === 0 ? "—" : `+${a.gapSeconds.toFixed(1)}s`}
@@ -517,19 +536,20 @@ export default function RacePage({ params }: { params: { raceId: string } }) {
 }
 
 function ProfileChart({ points }: { points: { x: number; y: number }[] }) {
-  if (!points.length) return null;
+  const sanitized = points.filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y));
+  if (!sanitized.length) return null;
+
   const width = 320;
   const height = 100;
-  const minX = 0;
-  const maxX = points[points.length - 1].x || 1;
-  const minY = Math.min(...points.map((p) => p.y));
-  const maxY = Math.max(...points.map((p) => p.y));
+  const maxX = Math.max(1, sanitized[sanitized.length - 1].x || 0);
+  const minY = Math.min(...sanitized.map((p) => p.y));
+  const maxY = Math.max(...sanitized.map((p) => p.y));
   const rangeY = maxY - minY || 1;
 
   const mapX = (x: number) => (x / maxX) * (width - 10) + 5;
   const mapY = (y: number) => height - ((y - minY) / rangeY) * (height - 10) - 5;
 
-  const d = points
+  const d = sanitized
     .map((p, idx) => `${idx === 0 ? "M" : "L"} ${mapX(p.x).toFixed(2)} ${mapY(p.y).toFixed(2)}`)
     .join(" ");
 

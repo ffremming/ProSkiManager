@@ -1,0 +1,1986 @@
+[
+  {
+    "id": "eirik-sverdrup-augdal",
+    "athleteId": "eirik-sverdrup-augdal",
+    "name": "Eirik Sverdrup Augdal",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6685-scaled.jpg",
+    "local": "/public/athletes/eks/eirik-sverdrup-augdal.jpg"
+  },
+  {
+    "id": "axel-jutterstrom",
+    "athleteId": "axel-jutterstrom",
+    "name": "Axel Jutterstrom",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7842-scaled.jpg",
+    "local": "/public/athletes/eks/axel-jutterstrom.jpg"
+  },
+  {
+    "id": "thomas-odegaarden",
+    "athleteId": "thomas-odegaarden",
+    "name": "Thomas Odegaarden",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6645-scaled.jpg",
+    "local": "/public/athletes/eks/thomas-odegaarden.jpg"
+  },
+  {
+    "id": "morten-eide-pedersen",
+    "athleteId": "morten-eide-pedersen",
+    "name": "Morten Eide Pedersen",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6445-scaled.jpg",
+    "local": "/public/athletes/eks/morten-eide-pedersen.jpg"
+  },
+  {
+    "id": "jeremy-royer",
+    "athleteId": "jeremy-royer",
+    "name": "Jeremy Royer",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6625-scaled.jpg",
+    "local": "/public/athletes/eks/jeremy-royer.jpg"
+  },
+  {
+    "id": "kati-roivas",
+    "athleteId": "kati-roivas",
+    "name": "Kati Roivas",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6480-scaled.jpg",
+    "local": "/public/athletes/eks/kati-roivas.jpg"
+  },
+  {
+    "id": "magni-smedas",
+    "athleteId": "magni-smedas",
+    "name": "Magni Smedas",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6528-scaled.jpg",
+    "local": "/public/athletes/eks/magni-smedas.jpg"
+  },
+  {
+    "id": "louise-lindstrom",
+    "athleteId": "louise-lindstrom",
+    "name": "Louise Lindstrom",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/TeamEksjohus__5F2A6696-scaled.jpg",
+    "local": "/public/athletes/eks/louise-lindstrom.jpg"
+  },
+  {
+    "id": "sofie-elebro",
+    "athleteId": "sofie-elebro",
+    "name": "Sofie Elebro",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6561-scaled.jpg",
+    "local": "/public/athletes/eks/sofie-elebro.jpg"
+  },
+  {
+    "id": "vebjorn-moen",
+    "athleteId": "vebjorn-moen",
+    "name": "Vebjorn Moen",
+    "team": "eks",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TeamEksjohus__5F2A6496-1-scaled.jpg",
+    "local": "/public/athletes/eks/vebjorn-moen.jpg"
+  },
+  {
+    "id": "thomas-bing",
+    "athleteId": "thomas-bing",
+    "name": "Thomas Bing",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Bing_Thomas.jpeg",
+    "local": "/public/athletes/eds/thomas-bing.jpeg"
+  },
+  {
+    "id": "vaclav-sedlacek",
+    "athleteId": "vaclav-sedlacek",
+    "name": "Vaclav Sedlacek",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Sedlacek_Vaclav.jpeg",
+    "local": "/public/athletes/eds/vaclav-sedlacek.jpeg"
+  },
+  {
+    "id": "karolina-grohova",
+    "athleteId": "karolina-grohova",
+    "name": "Karolina Grohova",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Grohova_Karolina.jpeg",
+    "local": "/public/athletes/eds/karolina-grohova.jpeg"
+  },
+  {
+    "id": "ales-bohaty",
+    "athleteId": "ales-bohaty",
+    "name": "Ales Bohaty",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Bohaty_Ales-1.jpg",
+    "local": "/public/athletes/eds/ales-bohaty.jpg"
+  },
+  {
+    "id": "anna-marie-hejna",
+    "athleteId": "anna-marie-hejna",
+    "name": "Anna-Marie Hejna",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Hejna_Anna_Marie.jpeg",
+    "local": "/public/athletes/eds/anna-marie-hejna.jpeg"
+  },
+  {
+    "id": "laura-stichling",
+    "athleteId": "laura-stichling",
+    "name": "Laura Stichling",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Stichling_Laura.jpeg",
+    "local": "/public/athletes/eds/laura-stichling.jpeg"
+  },
+  {
+    "id": "petr-kolaja",
+    "athleteId": "petr-kolaja",
+    "name": "Petr Kolaja",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/11/Kolaja_Petr.jpeg",
+    "local": "/public/athletes/eds/petr-kolaja.jpeg"
+  },
+  {
+    "id": "matyas-martan",
+    "athleteId": "matyas-martan",
+    "name": "Matyas Martan",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/12/Martan_Matyas.jpg",
+    "local": "/public/athletes/eds/matyas-martan.jpg"
+  },
+  {
+    "id": "emmi-nyberg",
+    "athleteId": "emmi-nyberg",
+    "name": "Emmi Nyberg",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Nyberg_Emmi.jpeg",
+    "local": "/public/athletes/eds/emmi-nyberg.jpeg"
+  },
+  {
+    "id": "jakub-becvar",
+    "athleteId": "jakub-becvar",
+    "name": "Jakub Becvar",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/12/Becvar_Jakub.jpeg",
+    "local": "/public/athletes/eds/jakub-becvar.jpeg"
+  },
+  {
+    "id": "jachym-poul",
+    "athleteId": "jachym-poul",
+    "name": "Jachym Poul",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/12/Poul_Jachym-scaled.jpeg",
+    "local": "/public/athletes/eds/jachym-poul.jpeg"
+  },
+  {
+    "id": "eliska-sibravova",
+    "athleteId": "eliska-sibravova",
+    "name": "Eliska Sibravova",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Sibravova_Eliska-scaled.jpeg",
+    "local": "/public/athletes/eds/eliska-sibravova.jpeg"
+  },
+  {
+    "id": "tina-miranova",
+    "athleteId": "tina-miranova",
+    "name": "Tina Miranova",
+    "team": "eds",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/12/Miranova_Tina.jpeg",
+    "local": "/public/athletes/eds/tina-miranova.jpeg"
+  },
+  {
+    "id": "emil-persson",
+    "athleteId": "emil-persson",
+    "name": "Emil Persson",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Emil-Persson-Profile-Picture-1.png",
+    "local": "/public/athletes/lag/emil-persson.png"
+  },
+  {
+    "id": "oskar-kardin",
+    "athleteId": "oskar-kardin",
+    "name": "Oskar Kardin",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Oskar-Kardin-Profile-Picture-2.png",
+    "local": "/public/athletes/lag/oskar-kardin.png"
+  },
+  {
+    "id": "alvar-myhlback",
+    "athleteId": "alvar-myhlback",
+    "name": "Alvar Myhlback",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Alvar-Myhlback-Profile-Picture-1.png",
+    "local": "/public/athletes/lag/alvar-myhlback.png"
+  },
+  {
+    "id": "runar-skaug-mathisen",
+    "athleteId": "runar-skaug-mathisen",
+    "name": "Runar Skaug Mathisen",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Runar-Skaug-Mathisen-Profile-Picture.png",
+    "local": "/public/athletes/lag/runar-skaug-mathisen.png"
+  },
+  {
+    "id": "einar-kalland-olsen",
+    "athleteId": "einar-kalland-olsen",
+    "name": "Einar Kalland-Olsen",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/EINAR-KALLAND-OLSEN-profile-picture.jpg",
+    "local": "/public/athletes/lag/einar-kalland-olsen.jpg"
+  },
+  {
+    "id": "jenny-larsson",
+    "athleteId": "jenny-larsson",
+    "name": "Jenny Larsson",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Jenny-Larsson-Profile-Picture.png",
+    "local": "/public/athletes/lag/jenny-larsson.png"
+  },
+  {
+    "id": "nils-dahlsten",
+    "athleteId": "nils-dahlsten",
+    "name": "Nils Dahlsten",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Nils-Dahlsten-Profile-Picture-1.png",
+    "local": "/public/athletes/lag/nils-dahlsten.png"
+  },
+  {
+    "id": "karolina-hedenstrom",
+    "athleteId": "karolina-hedenstrom",
+    "name": "Karolina Hedenstrom",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Karolina-Hedenstrom-Profile-Picture.png",
+    "local": "/public/athletes/lag/karolina-hedenstrom.png"
+  },
+  {
+    "id": "linnea-johansson",
+    "athleteId": "linnea-johansson",
+    "name": "Linnea Johansson",
+    "team": "lag",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Linnea-Johansson-Profile-Picture-1.png",
+    "local": "/public/athletes/lag/linnea-johansson.png"
+  },
+  {
+    "id": "kasper-stadaas",
+    "athleteId": "kasper-stadaas",
+    "name": "Kasper Stadaas",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Kasper-Stadaas.jpeg",
+    "local": "/public/athletes/tad/kasper-stadaas.jpeg"
+  },
+  {
+    "id": "max-novak",
+    "athleteId": "max-novak",
+    "name": "Max Novak",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Screenshot-2024-02-09-at-23.50.47.png",
+    "local": "/public/athletes/tad/max-novak.png"
+  },
+  {
+    "id": "amund-riege",
+    "athleteId": "amund-riege",
+    "name": "Amund Riege",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Amund-scaled.jpeg",
+    "local": "/public/athletes/tad/amund-riege.jpeg"
+  },
+  {
+    "id": "petter-stakston",
+    "athleteId": "petter-stakston",
+    "name": "Petter Stakston",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Screenshot-2024-02-09-at-23.51.30.png",
+    "local": "/public/athletes/tad/petter-stakston.png"
+  },
+  {
+    "id": "silje-oyre-slind",
+    "athleteId": "silje-oyre-slind",
+    "name": "Silje Oyre Slind",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7334-scaled.jpg",
+    "local": "/public/athletes/tad/silje-oyre-slind.jpg"
+  },
+  {
+    "id": "mathias-aas-rolid",
+    "athleteId": "mathias-aas-rolid",
+    "name": "Mathias Aas Rolid",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Mathias-Aas-Rolid.jpeg",
+    "local": "/public/athletes/tad/mathias-aas-rolid.jpeg"
+  },
+  {
+    "id": "gaute-kvale",
+    "athleteId": "gaute-kvale",
+    "name": "Gaute Kvale",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Gaute-scaled.jpeg",
+    "local": "/public/athletes/tad/gaute-kvale.jpeg"
+  },
+  {
+    "id": "anne-kjersti-kalvaa",
+    "athleteId": "anne-kjersti-kalvaa",
+    "name": "Anne Kjersti Kalvaa",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Anne-Kjersti-Kalva-scaled.jpeg",
+    "local": "/public/athletes/tad/anne-kjersti-kalvaa.jpeg"
+  },
+  {
+    "id": "sophia-laukli",
+    "athleteId": "sophia-laukli",
+    "name": "Sophia Laukli",
+    "team": "tad",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Sophia-Laukli.jpeg",
+    "local": "/public/athletes/tad/sophia-laukli.jpeg"
+  },
+  {
+    "id": "anikken-gjerde-alnes",
+    "athleteId": "anikken-gjerde-alnes",
+    "name": "Anikken Gjerde Alnes",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Anikken.jpg",
+    "local": "/public/athletes/eng/anikken-gjerde-alnes.jpg"
+  },
+  {
+    "id": "torleif-syrstad",
+    "athleteId": "torleif-syrstad",
+    "name": "Torleif Syrstad",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Torleif.jpg",
+    "local": "/public/athletes/eng/torleif-syrstad.jpg"
+  },
+  {
+    "id": "ole-jorgen-bruvoll",
+    "athleteId": "ole-jorgen-bruvoll",
+    "name": "Ole Jorgen Bruvoll",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Ole-JA¸rgen.jpg",
+    "local": "/public/athletes/eng/ole-jorgen-bruvoll.jpg"
+  },
+  {
+    "id": "amund-hoel",
+    "athleteId": "amund-hoel",
+    "name": "Amund Hoel",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Amund.jpg",
+    "local": "/public/athletes/eng/amund-hoel.jpg"
+  },
+  {
+    "id": "johan-tjelle",
+    "athleteId": "johan-tjelle",
+    "name": "Johan Tjelle",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Johan.jpg",
+    "local": "/public/athletes/eng/johan-tjelle.jpg"
+  },
+  {
+    "id": "hanna-lodin",
+    "athleteId": "hanna-lodin",
+    "name": "Hanna Lodin",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Hanna.jpg",
+    "local": "/public/athletes/eng/hanna-lodin.jpg"
+  },
+  {
+    "id": "anton-elvseth",
+    "athleteId": "anton-elvseth",
+    "name": "Anton Elvseth",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Anton-scaled.jpg",
+    "local": "/public/athletes/eng/anton-elvseth.jpg"
+  },
+  {
+    "id": "ida-dahl",
+    "athleteId": "ida-dahl",
+    "name": "Ida Dahl",
+    "team": "eng",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Ida-Dahl_Profile-Picture.jpg",
+    "local": "/public/athletes/eng/ida-dahl.jpg"
+  },
+  {
+    "id": "gustav-eriksson",
+    "athleteId": "gustav-eriksson",
+    "name": "Gustav Eriksson",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/GUSTAV-ERIKSSON-TEAM-SLAVIA-POJISTOVNA-ROBINSON-TRENTINO.png",
+    "local": "/public/athletes/rob/gustav-eriksson.png"
+  },
+  {
+    "id": "fabian-stocek",
+    "athleteId": "fabian-stocek",
+    "name": "Fabian Stocek",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/FABIAN-STOCEK-TEAM-SLAVIA-POJISTOVNA-ROBINSON-TRENTINO.png",
+    "local": "/public/athletes/rob/fabian-stocek.png"
+  },
+  {
+    "id": "simon-vuillet",
+    "athleteId": "simon-vuillet",
+    "name": "Simon Vuillet",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/SIMON-VUILLET-TEAM-SLAVIA-POJISTOVNA-ROBINSON-TRENTINO.png",
+    "local": "/public/athletes/rob/simon-vuillet.png"
+  },
+  {
+    "id": "oda-nerdrum",
+    "athleteId": "oda-nerdrum",
+    "name": "Oda Nerdrum",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/ODANER1.png",
+    "local": "/public/athletes/rob/oda-nerdrum.png"
+  },
+  {
+    "id": "tereza-hujerova",
+    "athleteId": "tereza-hujerova",
+    "name": "Tereza Hujerova",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TEREZA-HUJEROVA-TEAM-SLAVIA-POJISTOVNA-ROBINSON-TRENTINO.png",
+    "local": "/public/athletes/rob/tereza-hujerova.png"
+  },
+  {
+    "id": "tord-asle-gjerdalen",
+    "athleteId": "tord-asle-gjerdalen",
+    "name": "Tord Asle Gjerdalen",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/TORDAS1.png",
+    "local": "/public/athletes/rob/tord-asle-gjerdalen.png"
+  },
+  {
+    "id": "michaela-patscheider",
+    "athleteId": "michaela-patscheider",
+    "name": "Michaela Patscheider",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/MICHAELA-PATSCHEIDER-TEAM-SLAVIA-POJISTOVNA-ROBINSON-TRENTINO.png",
+    "local": "/public/athletes/rob/michaela-patscheider.png"
+  },
+  {
+    "id": "hanna-fine",
+    "athleteId": "hanna-fine",
+    "name": "Hanna Fine",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/HANNA-FINE-TEAM-SLAVIA-POJISTOVNA-ROBINSON-TRENTINO1.png",
+    "local": "/public/athletes/rob/hanna-fine.png"
+  },
+  {
+    "id": "stanislav-rezac",
+    "athleteId": "stanislav-rezac",
+    "name": "Stanislav Rezac",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/STANIS1.png",
+    "local": "/public/athletes/rob/stanislav-rezac.png"
+  },
+  {
+    "id": "jakob-walther",
+    "athleteId": "jakob-walther",
+    "name": "Jakob Walther",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/JAKOB-WALTHER-TEAM-SLAVIA-POJISTOVNA-ROBINSON-TRENTINO.png",
+    "local": "/public/athletes/rob/jakob-walther.png"
+  },
+  {
+    "id": "cristian-bertagnolli",
+    "athleteId": "cristian-bertagnolli",
+    "name": "Cristian Bertagnolli",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/CRISTI1.png",
+    "local": "/public/athletes/rob/cristian-bertagnolli.png"
+  },
+  {
+    "id": "caterina-cozzolino",
+    "athleteId": "caterina-cozzolino",
+    "name": "Caterina Cozzolino",
+    "team": "rob",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/CATERI1.png",
+    "local": "/public/athletes/rob/caterina-cozzolino.png"
+  },
+  {
+    "id": "johan-hoel",
+    "athleteId": "johan-hoel",
+    "name": "Johan Hoel",
+    "team": "trc",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Screenshot-2024-02-09-at-23.36.24.png",
+    "local": "/public/athletes/trc/johan-hoel.png"
+  },
+  {
+    "id": "andreas-nygaard",
+    "athleteId": "andreas-nygaard",
+    "name": "Andreas Nygaard",
+    "team": "trc",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7680-scaled.jpg",
+    "local": "/public/athletes/trc/andreas-nygaard.jpg"
+  },
+  {
+    "id": "stina-nilsson",
+    "athleteId": "stina-nilsson",
+    "name": "Stina Nilsson",
+    "team": "trc",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/BRZ_7687-scaled.jpg",
+    "local": "/public/athletes/trc/stina-nilsson.jpg"
+  },
+  {
+    "id": "mikael-gunnulfsen",
+    "athleteId": "mikael-gunnulfsen",
+    "name": "Mikael Gunnulfsen",
+    "team": "trc",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/MikaelGunnulfsen.jpg",
+    "local": "/public/athletes/trc/mikael-gunnulfsen.jpg"
+  },
+  {
+    "id": "marthe-bjornsgaard",
+    "athleteId": "marthe-bjornsgaard",
+    "name": "Marthe Bjornsgaard",
+    "team": "trc",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/MartheBj›rnsg†rd.jpeg",
+    "local": "/public/athletes/trc/marthe-bjornsgaard.jpeg"
+  },
+  {
+    "id": "havard-taugbol",
+    "athleteId": "havard-taugbol",
+    "name": "Havard Taugbol",
+    "team": "trc",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/H†vardTaugb›l.jpg",
+    "local": "/public/athletes/trc/havard-taugbol.jpg"
+  },
+  {
+    "id": "anna-aukland",
+    "athleteId": "anna-aukland",
+    "name": "Anna Aukland",
+    "team": "trc",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/AnnaAukland.jpg",
+    "local": "/public/athletes/trc/anna-aukland.jpg"
+  },
+  {
+    "id": "emilie-fleten",
+    "athleteId": "emilie-fleten",
+    "name": "Emilie Fleten",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7767-scaled.jpg",
+    "local": "/public/athletes/ram/emilie-fleten.jpg"
+  },
+  {
+    "id": "magnus-vesterheim",
+    "athleteId": "magnus-vesterheim",
+    "name": "Magnus Vesterheim",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Magnus-Vesterheim-1-rotated.jpg",
+    "local": "/public/athletes/ram/magnus-vesterheim.jpg"
+  },
+  {
+    "id": "alfred-buskqvist",
+    "athleteId": "alfred-buskqvist",
+    "name": "Alfred Buskqvist",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7729-scaled.jpg",
+    "local": "/public/athletes/ram/alfred-buskqvist.jpg"
+  },
+  {
+    "id": "herman-paus",
+    "athleteId": "herman-paus",
+    "name": "Herman Paus",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7747-scaled.jpg",
+    "local": "/public/athletes/ram/herman-paus.jpg"
+  },
+  {
+    "id": "thomas-joly",
+    "athleteId": "thomas-joly",
+    "name": "Thomas Joly",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7761-scaled.jpg",
+    "local": "/public/athletes/ram/thomas-joly.jpg"
+  },
+  {
+    "id": "julie-kvale-stostad",
+    "athleteId": "julie-kvale-stostad",
+    "name": "Julie Kvale Stostad",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7745-scaled.jpg",
+    "local": "/public/athletes/ram/julie-kvale-stostad.jpg"
+  },
+  {
+    "id": "anton-persson",
+    "athleteId": "anton-persson",
+    "name": "Anton Persson",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Anton-Persson_profil.png",
+    "local": "/public/athletes/ram/anton-persson.png"
+  },
+  {
+    "id": "truls-gisselman",
+    "athleteId": "truls-gisselman",
+    "name": "Truls Gisselman",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/02/Truls-Gisselman_profil.jpg",
+    "local": "/public/athletes/ram/truls-gisselman.jpg"
+  },
+  {
+    "id": "hjalmar-oscarsson",
+    "athleteId": "hjalmar-oscarsson",
+    "name": "Hjalmar Oscarsson",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Hjalmar-Oscarsson_profil.jpg",
+    "local": "/public/athletes/ram/hjalmar-oscarsson.jpg"
+  },
+  {
+    "id": "tova-andersson",
+    "athleteId": "tova-andersson",
+    "name": "Tova Andersson",
+    "team": "ram",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Tova-Andersson_profil.jpg",
+    "local": "/public/athletes/ram/tova-andersson.jpg"
+  },
+  {
+    "id": "nathan-jouannon",
+    "athleteId": "nathan-jouannon",
+    "name": "Nathan Jouannon",
+    "team": "tne",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Nathan-Jouannon-profile-picture-1.jpg",
+    "local": "/public/athletes/tne/nathan-jouannon.jpg"
+  },
+  {
+    "id": "leonie-harivel",
+    "athleteId": "leonie-harivel",
+    "name": "Leonie Harivel",
+    "team": "tne",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Screenshot-2024-02-09-at-23.27.25.png",
+    "local": "/public/athletes/tne/leonie-harivel.png"
+  },
+  {
+    "id": "antoine-millet",
+    "athleteId": "antoine-millet",
+    "name": "Antoine Millet",
+    "team": "tne",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Antoine-Millet-profile-picture-scaled.jpeg",
+    "local": "/public/athletes/tne/antoine-millet.jpeg"
+  },
+  {
+    "id": "boris-berglez",
+    "athleteId": "boris-berglez",
+    "name": "Boris Berglez",
+    "team": "tne",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Boris-Berglez-profile-picture-scaled.jpg",
+    "local": "/public/athletes/tne/boris-berglez.jpg"
+  },
+  {
+    "id": "elio-jarriand",
+    "athleteId": "elio-jarriand",
+    "name": "Elio Jarriand",
+    "team": "tne",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Elio-Jarriand-profile-picture.jpg",
+    "local": "/public/athletes/tne/elio-jarriand.jpg"
+  },
+  {
+    "id": "suzette-christin",
+    "athleteId": "suzette-christin",
+    "name": "Suzette Christin",
+    "team": "tne",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Suzette-Christin-profile-picture.jpg",
+    "local": "/public/athletes/tne/suzette-christin.jpg"
+  },
+  {
+    "id": "alice-bourdin",
+    "athleteId": "alice-bourdin",
+    "name": "Alice Bourdin",
+    "team": "tne",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Alice-Bourdin-profile-picture.jpg",
+    "local": "/public/athletes/tne/alice-bourdin.jpg"
+  },
+  {
+    "id": "halvor-korbol-thoner",
+    "athleteId": "halvor-korbol-thoner",
+    "name": "Halvor Korbol Thoner",
+    "team": "sol",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Halvor-Korbol-Thoner-profilbilde.jpg",
+    "local": "/public/athletes/sol/halvor-korbol-thoner.jpg"
+  },
+  {
+    "id": "ole-eirik-fuglehaug-ekrem",
+    "athleteId": "ole-eirik-fuglehaug-ekrem",
+    "name": "Ole Eirik Fuglehaug Ekrem",
+    "team": "sol",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Ole-Eirik-Fuglehaug-Ekrem-profilbilde-1.jpg",
+    "local": "/public/athletes/sol/ole-eirik-fuglehaug-ekrem.jpg"
+  },
+  {
+    "id": "camilla-broers",
+    "athleteId": "camilla-broers",
+    "name": "Camilla Broers",
+    "team": "sol",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Camilla-Brors-profilbilde.jpg",
+    "local": "/public/athletes/sol/camilla-broers.jpg"
+  },
+  {
+    "id": "maren-aberg",
+    "athleteId": "maren-aberg",
+    "name": "Maren Aberg",
+    "team": "sol",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Maren-Navarrete-Aaberg-profilbilde.jpg",
+    "local": "/public/athletes/sol/maren-aberg.jpg"
+  },
+  {
+    "id": "thea-sorum",
+    "athleteId": "thea-sorum",
+    "name": "Thea Sorum",
+    "team": "sol",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Thea-Sorum-profilbilde.jpg",
+    "local": "/public/athletes/sol/thea-sorum.jpg"
+  },
+  {
+    "id": "jorgen-harby",
+    "athleteId": "jorgen-harby",
+    "name": "Jorgen Harby",
+    "team": "sol",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/J況gen-Harby-profilbilde.jpg",
+    "local": "/public/athletes/sol/jorgen-harby.jpg"
+  },
+  {
+    "id": "katerina-paul",
+    "athleteId": "katerina-paul",
+    "name": "Katerina Paul",
+    "team": "we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7599-scaled.jpg",
+    "local": "/public/athletes/we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland/katerina-paul.jpg"
+  },
+  {
+    "id": "lauro-brandli",
+    "athleteId": "lauro-brandli",
+    "name": "Lauro Brandli",
+    "team": "we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7615-scaled.jpg",
+    "local": "/public/athletes/we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland/lauro-brandli.jpg"
+  },
+  {
+    "id": "curdin-raz",
+    "athleteId": "curdin-raz",
+    "name": "Curdin Raz",
+    "team": "we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7607-scaled.jpg",
+    "local": "/public/athletes/we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland/curdin-raz.jpg"
+  },
+  {
+    "id": "christian-winker",
+    "athleteId": "christian-winker",
+    "name": "Christian Winker",
+    "team": "we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Christian-Winker-profile-picture.jpeg",
+    "local": "/public/athletes/we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland/christian-winker.jpeg"
+  },
+  {
+    "id": "gianluca-wenger",
+    "athleteId": "gianluca-wenger",
+    "name": "Gianluca Wenger",
+    "team": "we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/GianLuca-Wenger-profile-picture.jpg",
+    "local": "/public/athletes/we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland/gianluca-wenger.jpg"
+  },
+  {
+    "id": "noelie-maurin",
+    "athleteId": "noelie-maurin",
+    "name": "Noelie Maurin",
+    "team": "we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7602-scaled.jpg",
+    "local": "/public/athletes/we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland/noelie-maurin.jpg"
+  },
+  {
+    "id": "franziska-muller",
+    "athleteId": "franziska-muller",
+    "name": "Franziska Muller",
+    "team": "we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BSV-Franziska-Muller-scaled.jpg",
+    "local": "/public/athletes/we-give-our-young-athletes-enough-time-to-develop-step-by-step-without-any-pressure-our-long-term-goal-is-to-eventually-develop-a-top-10-skier-for-switzerland/franziska-muller.jpg"
+  },
+  {
+    "id": "aud-oyen-halas",
+    "athleteId": "aud-oyen-halas",
+    "name": "Aud Oyen Halas",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Aud-Oyen-Halas-profile-picture.jpg",
+    "local": "/public/athletes/ntn/aud-oyen-halas.jpg"
+  },
+  {
+    "id": "ask-tveiten",
+    "athleteId": "ask-tveiten",
+    "name": "Ask Tveiten",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Ask-Tveiten-profile-picture.jpg",
+    "local": "/public/athletes/ntn/ask-tveiten.jpg"
+  },
+  {
+    "id": "mie-christine-stangeland-soerensen",
+    "athleteId": "mie-christine-stangeland-soerensen",
+    "name": "Mie Christine Stangeland Soerensen",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Mie-Sorensen-profile-picture.jpg",
+    "local": "/public/athletes/ntn/mie-christine-stangeland-soerensen.jpg"
+  },
+  {
+    "id": "julie-meinicke",
+    "athleteId": "julie-meinicke",
+    "name": "Julie Meinicke",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Julie-Meinicke-profile-picture.jpg",
+    "local": "/public/athletes/ntn/julie-meinicke.jpg"
+  },
+  {
+    "id": "ida-fuglenes-mathiesen",
+    "athleteId": "ida-fuglenes-mathiesen",
+    "name": "Ida Fuglenes Mathiesen",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Ida-Mathiesen-profile-picture.jpg",
+    "local": "/public/athletes/ntn/ida-fuglenes-mathiesen.jpg"
+  },
+  {
+    "id": "ferdinand-fremming",
+    "athleteId": "ferdinand-fremming",
+    "name": "Ferdinand Fremming",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Ferdinand-Fremming-profile-picture.jpg",
+    "local": "/public/athletes/ntn/ferdinand-fremming.jpg"
+  },
+  {
+    "id": "per-finstad",
+    "athleteId": "per-finstad",
+    "name": "Per Finstad",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Per-Finstad-profile-picture.jpg",
+    "local": "/public/athletes/ntn/per-finstad.jpg"
+  },
+  {
+    "id": "aurora-wilkens-jernberg",
+    "athleteId": "aurora-wilkens-jernberg",
+    "name": "Aurora Wilkens Jernberg",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Aurora-Jernberg-profile-picture.jpg",
+    "local": "/public/athletes/ntn/aurora-wilkens-jernberg.jpg"
+  },
+  {
+    "id": "nora-doksrod",
+    "athleteId": "nora-doksrod",
+    "name": "Nora Doksrod",
+    "team": "ntn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/11/Nora-Doksrod.png",
+    "local": "/public/athletes/ntn/nora-doksrod.png"
+  },
+  {
+    "id": "isac-holmstrom",
+    "athleteId": "isac-holmstrom",
+    "name": "Isac Holmstrom",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Isac-Holmstrom.jpeg",
+    "local": "/public/athletes/edu/isac-holmstrom.jpeg"
+  },
+  {
+    "id": "sofia-lindberg",
+    "athleteId": "sofia-lindberg",
+    "name": "Sofia Lindberg",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Sofia-Lindberg.jpeg",
+    "local": "/public/athletes/edu/sofia-lindberg.jpeg"
+  },
+  {
+    "id": "miro-karppanen",
+    "athleteId": "miro-karppanen",
+    "name": "Miro Karppanen",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Miro-Karppanen-e1759127928481.jpeg",
+    "local": "/public/athletes/edu/miro-karppanen.jpeg"
+  },
+  {
+    "id": "olli-tyrvainen",
+    "athleteId": "olli-tyrvainen",
+    "name": "Olli Tyrvainen",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Olli-Tyrvainen.jpeg",
+    "local": "/public/athletes/edu/olli-tyrvainen.jpeg"
+  },
+  {
+    "id": "lauri-mannila",
+    "athleteId": "lauri-mannila",
+    "name": "Lauri Mannila",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Lauri-Mannila-e1759127961166.jpeg",
+    "local": "/public/athletes/edu/lauri-mannila.jpeg"
+  },
+  {
+    "id": "markku-kouva",
+    "athleteId": "markku-kouva",
+    "name": "Markku Kouva",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Markku-Kouva.jpeg",
+    "local": "/public/athletes/edu/markku-kouva.jpeg"
+  },
+  {
+    "id": "emmi-lamsa",
+    "athleteId": "emmi-lamsa",
+    "name": "Emmi Lamsa",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Emmi-Lamsa.png",
+    "local": "/public/athletes/edu/emmi-lamsa.png"
+  },
+  {
+    "id": "ella-noora-haapalehto",
+    "athleteId": "ella-noora-haapalehto",
+    "name": "Ella Noora Haapalehto",
+    "team": "edu",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Ella-Noora-Haapalehto-e1760515738962.jpeg",
+    "local": "/public/athletes/edu/ella-noora-haapalehto.jpeg"
+  },
+  {
+    "id": "hedda-bangman",
+    "athleteId": "hedda-bangman",
+    "name": "Hedda Bangman",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Bangman_Hedda.jpg",
+    "local": "/public/athletes/bkn/hedda-bangman.jpg"
+  },
+  {
+    "id": "joar-thele",
+    "athleteId": "joar-thele",
+    "name": "Joar Thele",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Screenshot-2024-02-10-at-11.14.52.png",
+    "local": "/public/athletes/bkn/joar-thele.png"
+  },
+  {
+    "id": "magnus-waaler",
+    "athleteId": "magnus-waaler",
+    "name": "Magnus Waaler",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/05/magnus.jpeg",
+    "local": "/public/athletes/bkn/magnus-waaler.jpeg"
+  },
+  {
+    "id": "petter-northug",
+    "athleteId": "petter-northug",
+    "name": "Petter Northug",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/05/petter-northug.jpeg",
+    "local": "/public/athletes/bkn/petter-northug.jpeg"
+  },
+  {
+    "id": "fanny-endresen",
+    "athleteId": "fanny-endresen",
+    "name": "Fanny Endresen",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Fanny-e1759828051793.jpeg",
+    "local": "/public/athletes/bkn/fanny-endresen.jpeg"
+  },
+  {
+    "id": "maren-engeskaug-nielsen",
+    "athleteId": "maren-engeskaug-nielsen",
+    "name": "Maren Engeskaug Nielsen",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Maren-e1759828103535.jpeg",
+    "local": "/public/athletes/bkn/maren-engeskaug-nielsen.jpeg"
+  },
+  {
+    "id": "emil-gukild",
+    "athleteId": "emil-gukild",
+    "name": "Emil Gukild",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/01/GUKILDPROFIL.jpeg",
+    "local": "/public/athletes/bkn/emil-gukild.jpeg"
+  },
+  {
+    "id": "julie-victoria-berg",
+    "athleteId": "julie-victoria-berg",
+    "name": "Julie Victoria Berg",
+    "team": "bkn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Julie-V-e1759827992480.jpeg",
+    "local": "/public/athletes/bkn/julie-victoria-berg.jpeg"
+  },
+  {
+    "id": "klas-nilsson",
+    "athleteId": "klas-nilsson",
+    "name": "Klas Nilsson",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Nilsson-Klas-profile-picture.jpeg",
+    "local": "/public/athletes/tft/klas-nilsson.jpeg"
+  },
+  {
+    "id": "giacomo-ponti",
+    "athleteId": "giacomo-ponti",
+    "name": "Giacomo Ponti",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Ponti-Giacomo-profile-picture-scaled.jpg",
+    "local": "/public/athletes/tft/giacomo-ponti.jpg"
+  },
+  {
+    "id": "stefano-mich",
+    "athleteId": "stefano-mich",
+    "name": "Stefano Mich",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Mich-Stefano-profile-picture.jpeg",
+    "local": "/public/athletes/tft/stefano-mich.jpeg"
+  },
+  {
+    "id": "laurie-flochon-joly",
+    "athleteId": "laurie-flochon-joly",
+    "name": "Laurie Flochon Joly",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Flochon-July-Laurie-profile-picture-scaled.jpg",
+    "local": "/public/athletes/tft/laurie-flochon-joly.jpg"
+  },
+  {
+    "id": "emma-ivarsson",
+    "athleteId": "emma-ivarsson",
+    "name": "Emma Ivarsson",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Ivarsson-Emma-profile-picture-1.jpg",
+    "local": "/public/athletes/tft/emma-ivarsson.jpg"
+  },
+  {
+    "id": "stefano-dal-magro",
+    "athleteId": "stefano-dal-magro",
+    "name": "Stefano Dal Magro",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Dal-Magro-Stefano-profile-picture.jpg",
+    "local": "/public/athletes/tft/stefano-dal-magro.jpg"
+  },
+  {
+    "id": "mattia-armellini",
+    "athleteId": "mattia-armellini",
+    "name": "Mattia Armellini",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Armellini-Mattia-profile-picture-scaled.jpg",
+    "local": "/public/athletes/tft/mattia-armellini.jpg"
+  },
+  {
+    "id": "riccardo-mich",
+    "athleteId": "riccardo-mich",
+    "name": "Riccardo Mich",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Mich-Riccardo-profile-picture-2.jpg",
+    "local": "/public/athletes/tft/riccardo-mich.jpg"
+  },
+  {
+    "id": "margaux-gaillard",
+    "athleteId": "margaux-gaillard",
+    "name": "Margaux Gaillard",
+    "team": "tft",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Gaillard-Margaux-profile-picture-scaled.jpg",
+    "local": "/public/athletes/tft/margaux-gaillard.jpg"
+  },
+  {
+    "id": "per-ingvar-tollehaug",
+    "athleteId": "per-ingvar-tollehaug",
+    "name": "Per Ingvar Tollehaug",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/05/per-ingvar.jpeg",
+    "local": "/public/athletes/syn/per-ingvar-tollehaug.jpeg"
+  },
+  {
+    "id": "orjan-walseth",
+    "athleteId": "orjan-walseth",
+    "name": "Orjan Walseth",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Orjan-Walseth-scaled.jpg",
+    "local": "/public/athletes/syn/orjan-walseth.jpg"
+  },
+  {
+    "id": "theodor-danielsson",
+    "athleteId": "theodor-danielsson",
+    "name": "Theodor Danielsson",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Teodor-Danilsson.png",
+    "local": "/public/athletes/syn/theodor-danielsson.png"
+  },
+  {
+    "id": "hanna-johansson",
+    "athleteId": "hanna-johansson",
+    "name": "Hanna Johansson",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Hanna-Johansson-scaled.jpg",
+    "local": "/public/athletes/syn/hanna-johansson.jpg"
+  },
+  {
+    "id": "ulrik-emil-eriksen",
+    "athleteId": "ulrik-emil-eriksen",
+    "name": "Ulrik Emil Eriksen",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Ulrik-Emil-Eriksen-2006.jpg",
+    "local": "/public/athletes/syn/ulrik-emil-eriksen.jpg"
+  },
+  {
+    "id": "espen-benjaminsen",
+    "athleteId": "espen-benjaminsen",
+    "name": "Espen Benjaminsen",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Espen-Benjaminsen.jpg",
+    "local": "/public/athletes/syn/espen-benjaminsen.jpg"
+  },
+  {
+    "id": "agnes-ohrn",
+    "athleteId": "agnes-ohrn",
+    "name": "Agnes Ohrn",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Agnes-Ohrn-scaled.jpeg",
+    "local": "/public/athletes/syn/agnes-ohrn.jpeg"
+  },
+  {
+    "id": "oskar-fjellheim",
+    "athleteId": "oskar-fjellheim",
+    "name": "Oskar Fjellheim",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Profilbilde-Oskar-Flaen-Fjellheim-1-scaled.jpg",
+    "local": "/public/athletes/syn/oskar-fjellheim.jpg"
+  },
+  {
+    "id": "anna-zoltak",
+    "athleteId": "anna-zoltak",
+    "name": "Anna Zoltak",
+    "team": "syn",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/05/thumbnail_bakgrund-pro-team-398x597-1.png",
+    "local": "/public/athletes/syn/anna-zoltak.png"
+  },
+  {
+    "id": "marcus-johansson",
+    "athleteId": "marcus-johansson",
+    "name": "Marcus Johansson",
+    "team": "yth",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Marcus-Johansson-Profile-Picture-1.png",
+    "local": "/public/athletes/yth/marcus-johansson.png"
+  },
+  {
+    "id": "bruno-dettmann",
+    "athleteId": "bruno-dettmann",
+    "name": "Bruno Dettmann",
+    "team": "yth",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/BRUNO-DETTMANN-profile-picture-scaled.jpg",
+    "local": "/public/athletes/yth/bruno-dettmann.jpg"
+  },
+  {
+    "id": "anja-stolpe",
+    "athleteId": "anja-stolpe",
+    "name": "Anja Stolpe",
+    "team": "yth",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/ANJA-STOLPE-profile-picture-scaled.jpg",
+    "local": "/public/athletes/yth/anja-stolpe.jpg"
+  },
+  {
+    "id": "maja-majback",
+    "athleteId": "maja-majback",
+    "name": "Maja Majback",
+    "team": "yth",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Maja-Majback.png",
+    "local": "/public/athletes/yth/maja-majback.png"
+  },
+  {
+    "id": "valter-blomberg",
+    "athleteId": "valter-blomberg",
+    "name": "Valter Blomberg",
+    "team": "yth",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/VALTER-BLOMBERG-profile-picture-scaled.jpg",
+    "local": "/public/athletes/yth/valter-blomberg.jpg"
+  },
+  {
+    "id": "lisa-alrik",
+    "athleteId": "lisa-alrik",
+    "name": "Lisa Alrik",
+    "team": "yth",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/LISA-ALRIK-profile-picture-scaled.jpg",
+    "local": "/public/athletes/yth/lisa-alrik.jpg"
+  },
+  {
+    "id": "vera-myhlback",
+    "athleteId": "vera-myhlback",
+    "name": "Vera Myhlback",
+    "team": "yth",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/VERA-MYHLBACK-profile-picture-scaled.jpg",
+    "local": "/public/athletes/yth/vera-myhlback.jpg"
+  },
+  {
+    "id": "stefan-falk",
+    "athleteId": "stefan-falk",
+    "name": "Stefan Falk",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/BRZ_7656-scaled.jpg",
+    "local": "/public/athletes/sta/stefan-falk.jpg"
+  },
+  {
+    "id": "jonathan-goppert",
+    "athleteId": "jonathan-goppert",
+    "name": "Jonathan Goppert",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Jonathan-Goppert-1.jpg",
+    "local": "/public/athletes/sta/jonathan-goppert.jpg"
+  },
+  {
+    "id": "markus-kocheler",
+    "athleteId": "markus-kocheler",
+    "name": "Markus Kocheler",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/01/Markus-Kcheler.jpeg",
+    "local": "/public/athletes/sta/markus-kocheler.jpeg"
+  },
+  {
+    "id": "florian-gobel",
+    "athleteId": "florian-gobel",
+    "name": "Florian Gobel",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7636-scaled.jpg",
+    "local": "/public/athletes/sta/florian-gobel.jpg"
+  },
+  {
+    "id": "matthias-waldauf",
+    "athleteId": "matthias-waldauf",
+    "name": "Matthias Waldauf",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/BRZ_7643-scaled.jpg",
+    "local": "/public/athletes/sta/matthias-waldauf.jpg"
+  },
+  {
+    "id": "nicole-donzallaz",
+    "athleteId": "nicole-donzallaz",
+    "name": "Nicole Donzallaz",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7646-scaled.jpg",
+    "local": "/public/athletes/sta/nicole-donzallaz.jpg"
+  },
+  {
+    "id": "luisa-griessbaum",
+    "athleteId": "luisa-griessbaum",
+    "name": "Luisa Griessbaum",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/BRZ_7665-scaled.jpg",
+    "local": "/public/athletes/sta/luisa-griessbaum.jpg"
+  },
+  {
+    "id": "nicole-troger",
+    "athleteId": "nicole-troger",
+    "name": "Nicole Troger",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/BRZ_7649-scaled.jpg",
+    "local": "/public/athletes/sta/nicole-troger.jpg"
+  },
+  {
+    "id": "lorenz-gruber",
+    "athleteId": "lorenz-gruber",
+    "name": "Lorenz Gruber",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7655-scaled.jpg",
+    "local": "/public/athletes/sta/lorenz-gruber.jpg"
+  },
+  {
+    "id": "cecil-kumpel",
+    "athleteId": "cecil-kumpel",
+    "name": "Cecil Kumpel",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/BRZ_7659-scaled.jpg",
+    "local": "/public/athletes/sta/cecil-kumpel.jpg"
+  },
+  {
+    "id": "aaron-gunnarsson",
+    "athleteId": "aaron-gunnarsson",
+    "name": "Aaron Gunnarsson",
+    "team": "sta",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Aaron-Foto-SC.png",
+    "local": "/public/athletes/sta/aaron-gunnarsson.png"
+  },
+  {
+    "id": "hans-petter-rolke",
+    "athleteId": "hans-petter-rolke",
+    "name": "Hans Petter Rolke",
+    "team": "tro",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8220-scaled.jpg",
+    "local": "/public/athletes/tro/hans-petter-rolke.jpg"
+  },
+  {
+    "id": "henrik-vik-tolo",
+    "athleteId": "henrik-vik-tolo",
+    "name": "Henrik Vik Tolo",
+    "team": "tro",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Henrik-Tolo.png",
+    "local": "/public/athletes/tro/henrik-vik-tolo.png"
+  },
+  {
+    "id": "hanne-skulbru",
+    "athleteId": "hanne-skulbru",
+    "name": "Hanne Skulbru",
+    "team": "tro",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8227-scaled.jpg",
+    "local": "/public/athletes/tro/hanne-skulbru.jpg"
+  },
+  {
+    "id": "stefano-zanotto",
+    "athleteId": "stefano-zanotto",
+    "name": "Stefano Zanotto",
+    "team": "tro",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8223-scaled.jpg",
+    "local": "/public/athletes/tro/stefano-zanotto.jpg"
+  },
+  {
+    "id": "olav-adelsten-kildal",
+    "athleteId": "olav-adelsten-kildal",
+    "name": "Olav Adelsten Kildal",
+    "team": "tro",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Olav-Adelsten-Kildal-profile-picture.jpg",
+    "local": "/public/athletes/tro/olav-adelsten-kildal.jpg"
+  },
+  {
+    "id": "eva-helene-andberg",
+    "athleteId": "eva-helene-andberg",
+    "name": "Eva Helene Andberg",
+    "team": "tro",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Eva-Helene-Andberg-profile-picture.jpg",
+    "local": "/public/athletes/tro/eva-helene-andberg.jpg"
+  },
+  {
+    "id": "ingeborg-rystad",
+    "athleteId": "ingeborg-rystad",
+    "name": "Ingeborg Rystad",
+    "team": "tro",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Ingeborg-Marvik-Dahl-Rystad-profile-picture-e1759821834734.jpg",
+    "local": "/public/athletes/tro/ingeborg-rystad.jpg"
+  },
+  {
+    "id": "gabriel-strid",
+    "athleteId": "gabriel-strid",
+    "name": "Gabriel Strid",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7386-scaled.jpg",
+    "local": "/public/athletes/gse/gabriel-strid.jpg"
+  },
+  {
+    "id": "rickard-ericsson",
+    "athleteId": "rickard-ericsson",
+    "name": "Rickard Ericsson",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Rickard-Ericsson-profile-picture.jpg",
+    "local": "/public/athletes/gse/rickard-ericsson.jpg"
+  },
+  {
+    "id": "markus-hallen-johansson",
+    "athleteId": "markus-hallen-johansson",
+    "name": "Markus Hallen Johansson",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Markus-Hallen-Johansson-profile-picture.jpg",
+    "local": "/public/athletes/gse/markus-hallen-johansson.jpg"
+  },
+  {
+    "id": "maja-heikki",
+    "athleteId": "maja-heikki",
+    "name": "Maja Heikki",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Maja-Heikki-profile-picture.jpeg",
+    "local": "/public/athletes/gse/maja-heikki.jpeg"
+  },
+  {
+    "id": "matilda-bandefur",
+    "athleteId": "matilda-bandefur",
+    "name": "Matilda Bandefur",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Matilda-Bandefur-profile-picture.jpeg",
+    "local": "/public/athletes/gse/matilda-bandefur.jpeg"
+  },
+  {
+    "id": "emelie-olsson",
+    "athleteId": "emelie-olsson",
+    "name": "Emelie Olsson",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/02/Emelie-Olsson-profile-picture.jpg",
+    "local": "/public/athletes/gse/emelie-olsson.jpg"
+  },
+  {
+    "id": "edvin-hakansson",
+    "athleteId": "edvin-hakansson",
+    "name": "Edvin Hakansson",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/02/Edvin-Hakansson-profile-picture.jpg",
+    "local": "/public/athletes/gse/edvin-hakansson.jpg"
+  },
+  {
+    "id": "emil-nykvist",
+    "athleteId": "emil-nykvist",
+    "name": "Emil Nykvist",
+    "team": "gse",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Emil-Nykvist-profile-picture.jpeg",
+    "local": "/public/athletes/gse/emil-nykvist.jpeg"
+  },
+  {
+    "id": "ivar-andre-ryttervold",
+    "athleteId": "ivar-andre-ryttervold",
+    "name": "Ivar Andre Ryttervold",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Ivar-Ryttervold.jpg",
+    "local": "/public/athletes/and/ivar-andre-ryttervold.jpg"
+  },
+  {
+    "id": "halvor-kleivi",
+    "athleteId": "halvor-kleivi",
+    "name": "Halvor Kleivi",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Halvor-Kleivi.jpg",
+    "local": "/public/athletes/and/halvor-kleivi.jpg"
+  },
+  {
+    "id": "kjetil-stuge-banerud",
+    "athleteId": "kjetil-stuge-banerud",
+    "name": "Kjetil Stuge Banerud",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Kjetil-Baanerud.jpg",
+    "local": "/public/athletes/and/kjetil-stuge-banerud.jpg"
+  },
+  {
+    "id": "viljar-buer-christensen",
+    "athleteId": "viljar-buer-christensen",
+    "name": "Viljar Buer Christensen",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Viljar-Buer.jpg",
+    "local": "/public/athletes/and/viljar-buer-christensen.jpg"
+  },
+  {
+    "id": "sigrid-bye",
+    "athleteId": "sigrid-bye",
+    "name": "Sigrid Bye",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Sigrid-Bye.jpg",
+    "local": "/public/athletes/and/sigrid-bye.jpg"
+  },
+  {
+    "id": "erling-moseby",
+    "athleteId": "erling-moseby",
+    "name": "Erling Moseby",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Erling-Moseby.jpg",
+    "local": "/public/athletes/and/erling-moseby.jpg"
+  },
+  {
+    "id": "martin-mobrathen",
+    "athleteId": "martin-mobrathen",
+    "name": "Martin Mobrathen",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Martin-2.jpg",
+    "local": "/public/athletes/and/martin-mobrathen.jpg"
+  },
+  {
+    "id": "sandra-vestly-sirevag",
+    "athleteId": "sandra-vestly-sirevag",
+    "name": "Sandra Vestly Sirevag",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/01/Sandra-Sirevag-rotated.jpg",
+    "local": "/public/athletes/and/sandra-vestly-sirevag.jpg"
+  },
+  {
+    "id": "hedda-nerdrum",
+    "athleteId": "hedda-nerdrum",
+    "name": "Hedda Nerdrum",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Hedda-Nerdrum.jpg",
+    "local": "/public/athletes/and/hedda-nerdrum.jpg"
+  },
+  {
+    "id": "oda-aanestad",
+    "athleteId": "oda-aanestad",
+    "name": "Oda Aanestad",
+    "team": "and",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Oda.jpg",
+    "local": "/public/athletes/and/oda-aanestad.jpg"
+  },
+  {
+    "id": "johan-osterlund",
+    "athleteId": "johan-osterlund",
+    "name": "Johan Osterlund",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Johan-Osterlund-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/johan-osterlund.jpg"
+  },
+  {
+    "id": "kevin-schilling",
+    "athleteId": "kevin-schilling",
+    "name": "Kevin Schilling",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Kevin-Schilling-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/kevin-schilling.jpg"
+  },
+  {
+    "id": "gian-jorger",
+    "athleteId": "gian-jorger",
+    "name": "Gian Jorger",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/11/Gian-Jorger-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/gian-jorger.jpg"
+  },
+  {
+    "id": "marlies-nipius",
+    "athleteId": "marlies-nipius",
+    "name": "Marlies Nipius",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Marlies-Nipius-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/marlies-nipius.jpg"
+  },
+  {
+    "id": "adrian-bosshart",
+    "athleteId": "adrian-bosshart",
+    "name": "Adrian Bosshart",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Adrian-Bosshart-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/adrian-bosshart.jpg"
+  },
+  {
+    "id": "manuela-deigentesch",
+    "athleteId": "manuela-deigentesch",
+    "name": "Manuela Deigentesch",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Manuela-Deigentesch-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/manuela-deigentesch.jpg"
+  },
+  {
+    "id": "ivo-spadin",
+    "athleteId": "ivo-spadin",
+    "name": "Ivo Spadin",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/11/Ivo-Spadin-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/ivo-spadin.jpg"
+  },
+  {
+    "id": "robin-locher",
+    "athleteId": "robin-locher",
+    "name": "Robin Locher",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Robin-Locher-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/robin-locher.jpg"
+  },
+  {
+    "id": "valerie-widmer",
+    "athleteId": "valerie-widmer",
+    "name": "Valerie Widmer",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Valerie-Widmer-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/valerie-widmer.jpg"
+  },
+  {
+    "id": "samuel-szczotka",
+    "athleteId": "samuel-szczotka",
+    "name": "Samuel Szczotka",
+    "team": "emt",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/11/Samuel-Szczotka-Team-Emtec-Nordic-Profile-Picture.jpg",
+    "local": "/public/athletes/emt/samuel-szczotka.jpg"
+  },
+  {
+    "id": "fredrik-helgestad",
+    "athleteId": "fredrik-helgestad",
+    "name": "Fredrik Helgestad",
+    "team": "this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Fredrik-Helgestad-scaled.jpg",
+    "local": "/public/athletes/this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over/fredrik-helgestad.jpg"
+  },
+  {
+    "id": "henrik-haugland-syverinsen",
+    "athleteId": "henrik-haugland-syverinsen",
+    "name": "Henrik Haugland Syverinsen",
+    "team": "this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Henrik-Syverinsen-scaled.jpg",
+    "local": "/public/athletes/this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over/henrik-haugland-syverinsen.jpg"
+  },
+  {
+    "id": "haakon-holden",
+    "athleteId": "haakon-holden",
+    "name": "Haakon Holden",
+    "team": "this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Haakon-Holden-scaled.jpg",
+    "local": "/public/athletes/this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over/haakon-holden.jpg"
+  },
+  {
+    "id": "vetle-thyli",
+    "athleteId": "vetle-thyli",
+    "name": "Vetle Thyli",
+    "team": "this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Vetle-Thyli-scaled.jpg",
+    "local": "/public/athletes/this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over/vetle-thyli.jpg"
+  },
+  {
+    "id": "sandra-schutzova",
+    "athleteId": "sandra-schutzova",
+    "name": "Sandra Schutzova",
+    "team": "this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Sandra-Schutzova-scaled.jpg",
+    "local": "/public/athletes/this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over/sandra-schutzova.jpg"
+  },
+  {
+    "id": "ingrid-bergene-aabrekk",
+    "athleteId": "ingrid-bergene-aabrekk",
+    "name": "Ingrid Bergene Aabrekk",
+    "team": "this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Ingrid-Aabrekk.jpeg",
+    "local": "/public/athletes/this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over/ingrid-bergene-aabrekk.jpeg"
+  },
+  {
+    "id": "helene-ekrheim-haugen",
+    "athleteId": "helene-ekrheim-haugen",
+    "name": "Helene Ekrheim Haugen",
+    "team": "this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/09/Helene-Haugen.jpg",
+    "local": "/public/athletes/this-underdog-team-based-in-norway-is-not-here-to-take-part-we-are-here-to-take-over/helene-ekrheim-haugen.jpg"
+  },
+  {
+    "id": "sune-elmose",
+    "athleteId": "sune-elmose",
+    "name": "Sune Elmose",
+    "team": "dan",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8163-scaled.jpg",
+    "local": "/public/athletes/dan/sune-elmose.jpg"
+  },
+  {
+    "id": "madelene-halvardsson",
+    "athleteId": "madelene-halvardsson",
+    "name": "Madelene Halvardsson",
+    "team": "dan",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8166-scaled.jpg",
+    "local": "/public/athletes/dan/madelene-halvardsson.jpg"
+  },
+  {
+    "id": "tobias-dargatz",
+    "athleteId": "tobias-dargatz",
+    "name": "Tobias Dargatz",
+    "team": "dan",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Tobias-Dargatz-1.jpg",
+    "local": "/public/athletes/dan/tobias-dargatz.jpg"
+  },
+  {
+    "id": "lovisa-kjerstensson",
+    "athleteId": "lovisa-kjerstensson",
+    "name": "Lovisa Kjerstensson",
+    "team": "dan",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Lovisa-Kjerstensson.jpg",
+    "local": "/public/athletes/dan/lovisa-kjerstensson.jpg"
+  },
+  {
+    "id": "joachim-thrane",
+    "athleteId": "joachim-thrane",
+    "name": "Joachim Thrane",
+    "team": "dan",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/05/joachim-thrane.png",
+    "local": "/public/athletes/dan/joachim-thrane.png"
+  },
+  {
+    "id": "erica-smedberg",
+    "athleteId": "erica-smedberg",
+    "name": "Erica Smedberg",
+    "team": "dan",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Erica-Smedberg.jpg",
+    "local": "/public/athletes/dan/erica-smedberg.jpg"
+  },
+  {
+    "id": "sara-elfstrom",
+    "athleteId": "sara-elfstrom",
+    "name": "Sara Elfstrom",
+    "team": "dan",
+    "url": "https://skiclassics.com/wp-content/uploads/2025/10/Sara-Elfstrom-e1759755299822.jpg",
+    "local": "/public/athletes/dan/sara-elfstrom.jpg"
+  },
+  {
+    "id": "lassi-juhanoja",
+    "athleteId": "lassi-juhanoja",
+    "name": "Lassi Juhanoja",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Lassi-Juhanoja-profile-pic57.png",
+    "local": "/public/athletes/bru/lassi-juhanoja.png"
+  },
+  {
+    "id": "madelene-nord",
+    "athleteId": "madelene-nord",
+    "name": "Madelene Nord",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Madelein-Nord-profile-pic92.png",
+    "local": "/public/athletes/bru/madelene-nord.png"
+  },
+  {
+    "id": "alexandra-nilsson",
+    "athleteId": "alexandra-nilsson",
+    "name": "Alexandra Nilsson",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Alexandra-Nielson-profile-pic98.png",
+    "local": "/public/athletes/bru/alexandra-nilsson.png"
+  },
+  {
+    "id": "jenny-ramstedt",
+    "athleteId": "jenny-ramstedt",
+    "name": "Jenny Ramstedt",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Jenny-Ramstedt-profile-pic5.png",
+    "local": "/public/athletes/bru/jenny-ramstedt.png"
+  },
+  {
+    "id": "caroline-olsson",
+    "athleteId": "caroline-olsson",
+    "name": "Caroline Olsson",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Caroline-Olsson-profile-pic97.png",
+    "local": "/public/athletes/bru/caroline-olsson.png"
+  },
+  {
+    "id": "henric-thunander",
+    "athleteId": "henric-thunander",
+    "name": "Henric Thunander",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Henric-Thuander-profile-pic99.png",
+    "local": "/public/athletes/bru/henric-thunander.png"
+  },
+  {
+    "id": "anton-schaper",
+    "athleteId": "anton-schaper",
+    "name": "Anton Schaper",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Anton-Schaper-profile-pic33.png",
+    "local": "/public/athletes/bru/anton-schaper.png"
+  },
+  {
+    "id": "rudolf-dohnal",
+    "athleteId": "rudolf-dohnal",
+    "name": "Rudolf Dohnal",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Ruldolf-Dohnal-profile-Pic62.png",
+    "local": "/public/athletes/bru/rudolf-dohnal.png"
+  },
+  {
+    "id": "johannes-richter",
+    "athleteId": "johannes-richter",
+    "name": "Johannes Richter",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Richter-Johannes-profile-pic.png",
+    "local": "/public/athletes/bru/johannes-richter.png"
+  },
+  {
+    "id": "alexandra-hoffmann",
+    "athleteId": "alexandra-hoffmann",
+    "name": "Alexandra Hoffmann",
+    "team": "bru",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Alexandra-Hoffmann-profile-pic51.png",
+    "local": "/public/athletes/bru/alexandra-hoffmann.png"
+  },
+  {
+    "id": "simen-ramstad",
+    "athleteId": "simen-ramstad",
+    "name": "Simen Ramstad",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Simen_Ramstad.png",
+    "local": "/public/athletes/amk/simen-ramstad.png"
+  },
+  {
+    "id": "erik-ola-jorde",
+    "athleteId": "erik-ola-jorde",
+    "name": "Erik Ola Jorde",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Erik_Ola_Jorde.jpeg",
+    "local": "/public/athletes/amk/erik-ola-jorde.jpeg"
+  },
+  {
+    "id": "halfdan-thomas-baumann",
+    "athleteId": "halfdan-thomas-baumann",
+    "name": "Halfdan Thomas Baumann",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Halfdan_Thomas_Baumann.jpeg",
+    "local": "/public/athletes/amk/halfdan-thomas-baumann.jpeg"
+  },
+  {
+    "id": "halvor-bade",
+    "athleteId": "halvor-bade",
+    "name": "Halvor Bade",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Halvor_Bade.jpeg",
+    "local": "/public/athletes/amk/halvor-bade.jpeg"
+  },
+  {
+    "id": "erling-nyborg-owren",
+    "athleteId": "erling-nyborg-owren",
+    "name": "Erling Nyborg Owren",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Erling_Owren.jpeg",
+    "local": "/public/athletes/amk/erling-nyborg-owren.jpeg"
+  },
+  {
+    "id": "astrid-arnesen",
+    "athleteId": "astrid-arnesen",
+    "name": "Astrid Arnesen",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Astrid_Arnesen.jpeg",
+    "local": "/public/athletes/amk/astrid-arnesen.jpeg"
+  },
+  {
+    "id": "martine-grottum-engen",
+    "athleteId": "martine-grottum-engen",
+    "name": "Martine Grottum Engen",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Martine_Engen.jpeg",
+    "local": "/public/athletes/amk/martine-grottum-engen.jpeg"
+  },
+  {
+    "id": "hermine-widding",
+    "athleteId": "hermine-widding",
+    "name": "Hermine Widding",
+    "team": "amk",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Hermine_Widding.jpeg",
+    "local": "/public/athletes/amk/hermine-widding.jpeg"
+  },
+  {
+    "id": "lorenzo-busin",
+    "athleteId": "lorenzo-busin",
+    "name": "Lorenzo Busin",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7877-scaled.jpg",
+    "local": "/public/athletes/int/lorenzo-busin.jpg"
+  },
+  {
+    "id": "francesco-ferrari",
+    "athleteId": "francesco-ferrari",
+    "name": "Francesco Ferrari",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7852-scaled.jpg",
+    "local": "/public/athletes/int/francesco-ferrari.jpg"
+  },
+  {
+    "id": "christian-lorenzi",
+    "athleteId": "christian-lorenzi",
+    "name": "Christian Lorenzi",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7856-scaled.jpg",
+    "local": "/public/athletes/int/christian-lorenzi.jpg"
+  },
+  {
+    "id": "anna-schmidhofer",
+    "athleteId": "anna-schmidhofer",
+    "name": "Anna Schmidhofer",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7880-scaled.jpg",
+    "local": "/public/athletes/int/anna-schmidhofer.jpg"
+  },
+  {
+    "id": "malin-borjesjo",
+    "athleteId": "malin-borjesjo",
+    "name": "Malin Borjesjo",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7862-scaled.jpg",
+    "local": "/public/athletes/int/malin-borjesjo.jpg"
+  },
+  {
+    "id": "sadurni-betriu-boix",
+    "athleteId": "sadurni-betriu-boix",
+    "name": "Sadurni Betriu Boix",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7859-scaled.jpg",
+    "local": "/public/athletes/int/sadurni-betriu-boix.jpg"
+  },
+  {
+    "id": "thomas-rinner",
+    "athleteId": "thomas-rinner",
+    "name": "Thomas Rinner",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_7873-scaled.jpg",
+    "local": "/public/athletes/int/thomas-rinner.jpg"
+  },
+  {
+    "id": "anna-giordan",
+    "athleteId": "anna-giordan",
+    "name": "Anna Giordan",
+    "team": "int",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/02/ANNA-GIORDAN-SKI-CLASSICS.jpg",
+    "local": "/public/athletes/int/anna-giordan.jpg"
+  },
+  {
+    "id": "johannes-eklof",
+    "athleteId": "johannes-eklof",
+    "name": "Johannes Eklof",
+    "team": "goh",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8087-scaled.jpg",
+    "local": "/public/athletes/goh/johannes-eklof.jpg"
+  },
+  {
+    "id": "elias-andersson",
+    "athleteId": "elias-andersson",
+    "name": "Elias Andersson",
+    "team": "goh",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8084-scaled.jpg",
+    "local": "/public/athletes/goh/elias-andersson.jpg"
+  },
+  {
+    "id": "julia-angelsioo",
+    "athleteId": "julia-angelsioo",
+    "name": "Julia Angelsioo",
+    "team": "goh",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8098-scaled.jpg",
+    "local": "/public/athletes/goh/julia-angelsioo.jpg"
+  },
+  {
+    "id": "hilda-lof",
+    "athleteId": "hilda-lof",
+    "name": "Hilda Lof",
+    "team": "goh",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/BRZ_8090-scaled.jpg",
+    "local": "/public/athletes/goh/hilda-lof.jpg"
+  },
+  {
+    "id": "joel-bjornlinger",
+    "athleteId": "joel-bjornlinger",
+    "name": "Joel Bjornlinger",
+    "team": "goh",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/04/Joel-Bjornlinger.jpg",
+    "local": "/public/athletes/goh/joel-bjornlinger.jpg"
+  },
+  {
+    "id": "moa-hansson",
+    "athleteId": "moa-hansson",
+    "name": "Moa Hansson",
+    "team": "goh",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Moa-Hansson-profile-picture.jpg",
+    "local": "/public/athletes/goh/moa-hansson.jpg"
+  },
+  {
+    "id": "henning-lie",
+    "athleteId": "henning-lie",
+    "name": "Henning Lie",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Henning-Lie-profilbilde.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/henning-lie.jpg"
+  },
+  {
+    "id": "henrik-arntzen-joks",
+    "athleteId": "henrik-arntzen-joks",
+    "name": "Henrik Arntzen Joks",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Henrik-Arntzen-Joks-profilbilde-scaled.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/henrik-arntzen-joks.jpg"
+  },
+  {
+    "id": "hanna-sandholt-hansen",
+    "athleteId": "hanna-sandholt-hansen",
+    "name": "Hanna Sandholt Hansen",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Hanna-Sandholt-Hansen-profilbilde.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/hanna-sandholt-hansen.jpg"
+  },
+  {
+    "id": "marie-renee-sorum-gangso",
+    "athleteId": "marie-renee-sorum-gangso",
+    "name": "Marie Renee Sorum Gangso",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Marie-Renee-Sorum-Gangso-profilbilde-scaled.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/marie-renee-sorum-gangso.jpg"
+  },
+  {
+    "id": "jonas-bergli",
+    "athleteId": "jonas-bergli",
+    "name": "Jonas Bergli",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Jonas-Bergli-profilbilde.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/jonas-bergli.jpg"
+  },
+  {
+    "id": "karen-amalie-nordseth",
+    "athleteId": "karen-amalie-nordseth",
+    "name": "Karen Amalie Nordseth",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/03/Karen-Amalie-Nordseth-profilbilde.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/karen-amalie-nordseth.jpg"
+  },
+  {
+    "id": "bastien-laurent",
+    "athleteId": "bastien-laurent",
+    "name": "Bastien Laurent",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2023/09/Bastien-Laurent-profilbilde.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/bastien-laurent.jpg"
+  },
+  {
+    "id": "anders-grini",
+    "athleteId": "anders-grini",
+    "name": "Anders Grini",
+    "team": "team-sjusjen-langlp",
+    "url": "https://skiclassics.com/wp-content/uploads/2024/10/Anders-Grini-profilbilde.jpg",
+    "local": "/public/athletes/team-sjusjen-langlp/anders-grini.jpg"
+  }
+]

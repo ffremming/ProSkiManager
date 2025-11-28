@@ -3,11 +3,16 @@
 import { useMemo, useState } from "react";
 import { useGameStore } from "../../state/gameStore";
 import { WeeklyTrainingPlan } from "../../game/domain/types";
+import Link from "next/link";
+import { useHasHydrated } from "../../state/useHasHydrated";
 
 const loads = ["EASY", "MEDIUM", "HARD", "REST"] as const;
 const focuses = ["VO2MAX", "THRESHOLD", "MUSCULAR", "ACCELERATION", "SPRINT_FINISH"] as const;
 
 export default function TrainingPage() {
+  const hydrated = useHasHydrated();
+  if (!hydrated) return null;
+
   const { athletes, setPlans, currentPlans } = useGameStore((state) => {
     const teamId = state.playerTeamId || Object.keys(state.teams)[0];
     const team = state.teams[teamId];
@@ -138,16 +143,35 @@ export default function TrainingPage() {
                     { day: 3, intensity: "MEDIUM", focus: "THRESHOLD" as const },
                     { day: 5, intensity: "MEDIUM", focus: "MUSCULAR" as const },
                   ];
-                  const sessions = current?.sessions || defaultSessions;
-                  return (
-                    <div key={athlete.id} className="rounded-lg border border-white/10 bg-slate-900/50 p-3">
-                      <div className="text-sm font-semibold text-slate-100">{athlete.name}</div>
-                      <div className="text-xs text-slate-400">Form {athlete.state.form} · Fatigue {athlete.state.fatigue}</div>
-                      <div className="mt-2 grid gap-2 text-xs">
-                        {sessions.map((session, idx) => (
-                          <div key={`${athlete.id}-s${idx}`} className="flex items-center gap-2">
-                            <span className="w-10 text-slate-300">Day {session.day}</span>
-                            <select
+                const sessions = current?.sessions || defaultSessions;
+                return (
+                  <div key={athlete.id} className="rounded-lg border border-white/10 bg-slate-900/50 p-3">
+                    <div className="flex items-center gap-2">
+                      {athlete.photo ? (
+                        <img
+                          src={athlete.photo as string}
+                          alt={athlete.name}
+                          className="h-10 w-10 rounded-full object-cover bg-white/10"
+                          loading="lazy"
+                          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = "none")}
+                        />
+                      ) : (
+                        <div className="h-10 w-10 rounded-full bg-white/10" />
+                      )}
+                      <div>
+                        <div className="text-sm font-semibold text-slate-100">
+                          <Link href={`/athlete/${athlete.id}`} className="underline text-blue-200 hover:text-blue-100">
+                            {athlete.name}
+                          </Link>
+                        </div>
+                        <div className="text-xs text-slate-400">Form {athlete.state.form} · Fatigue {athlete.state.fatigue}</div>
+                      </div>
+                    </div>
+                    <div className="mt-2 grid gap-2 text-xs">
+                      {sessions.map((session, idx) => (
+                        <div key={`${athlete.id}-s${idx}`} className="flex items-center gap-2">
+                          <span className="w-10 text-slate-300">Day {session.day}</span>
+                          <select
                               className="rounded bg-slate-800 px-2 py-1"
                               value={session.intensity}
                               onChange={(e) =>

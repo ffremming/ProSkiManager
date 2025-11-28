@@ -11,7 +11,9 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:all": "npm run lint && npm run test:unit && npm run test:e2e"
+    "test:all": "npm run lint && npm run test:unit && npm run test:e2e",
+    "import:data": "node scripts/import-ski-data.js",
+    "import:athlete-images": "node scripts/import-athlete-images.js"
   },
   "dependencies": {
     "@react-three/fiber": "^8.16.6",
@@ -19,7 +21,8 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "three": "^0.165.0",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "csv-parse": "^5.5.6"
   },
   "devDependencies": {
     "@playwright/test": "^1.47.0",
