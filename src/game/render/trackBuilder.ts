@@ -20,7 +20,8 @@ const gpxMap: Record<string, string> = {
 export async function loadTrackProfile(course: RaceCourse): Promise<TrackProfile> {
   const gpxName = gpxMap[course.id];
   if (gpxName) {
-    const sources = [`/gpx/${gpxName}`, `/game/data/gpx/${gpxName}`];
+    const encoded = encodeURI(gpxName);
+    const sources = [`/gpx/${encoded}`, `/game/data/gpx/${encoded}`];
     for (const src of sources) {
       const fromGpx = await buildFromGpx(src, course).catch(() => null);
       if (fromGpx) return fromGpx;
@@ -78,12 +79,16 @@ async function buildFromGpx(url: string, course: RaceCourse): Promise<TrackProfi
   });
   if (totalLen <= 0) throw new Error("GPX length invalid");
 
+  // Simplify to keep bends but reduce point count (helps perf while retaining shape).
+  const simplified = simplifyPoints(points, 5);
   const scale = course.totalDistance / totalLen;
-  const scaledPoints = smoothElevations(points.map((p) => p.clone().multiplyScalar(scale)), 9);
-  const centered = centerPoints(scaledPoints);
-  const curve = new THREE.CatmullRomCurve3(centered, false, "catmullrom", 0.1);
+  // Scale down elevation to avoid extreme tilts and clamp overall grade.
+  const scaledPoints = simplified.map((p) => new THREE.Vector3(p.x, p.y * 0.5, p.z).multiplyScalar(scale));
+  const gradeLimited = limitMaxGrade(scaledPoints, 0.2); // cap grade to ~20% for stability.
+  const centered = centerPoints(smoothElevations(gradeLimited, 9));
+  const curve = new THREE.CatmullRomCurve3(centered, false, "catmullrom", 0.18);
   curve.curveType = "catmullrom";
-  curve.tension = 0.15;
+  curve.tension = 0.18;
 
   return finalizeProfile(curve, course.totalDistance);
 }
@@ -147,7 +152,7 @@ function scaleLength(points: THREE.Vector3[], targetLength: number) {
 
 function sampleSlope(curve: THREE.CatmullRomCurve3) {
   const samples: { t: number; slope: number }[] = [];
-  const steps = 200;
+  const steps = 2000;
   for (let i = 0; i <= steps; i++) {
     const t = i / steps;
     const p1 = curve.getPointAt(Math.max(0, t - 0.01));
@@ -182,4 +187,76 @@ export function slopeAtDistance(distance: number, profile: TrackProfile) {
   const b = profile.slopeSamples[Math.max(0, Math.min(profile.slopeSamples.length - 1, idx + 1))];
   const blend = (t - a.t) / Math.max(1e-6, b.t - a.t);
   return THREE.MathUtils.lerp(a.slope, b.slope, blend);
+}
+
+// Ramer–Douglas–Peucker simplification to preserve key bends without overwhelming geometry.
+function simplifyPoints(points: THREE.Vector3[], tolerance: number) {
+  if (points.length < 3) return points;
+  const sqTol = tolerance * tolerance;
+
+  const getSqSegDist = (p: THREE.Vector3, a: THREE.Vector3, b: THREE.Vector3) => {
+    let x = a.x;
+    let y = a.y;
+    let z = a.z;
+    let dx = b.x - x;
+    let dy = b.y - y;
+    let dz = b.z - z;
+
+    if (dx !== 0 || dy !== 0 || dz !== 0) {
+      const t = ((p.x - x) * dx + (p.y - y) * dy + (p.z - z) * dz) / (dx * dx + dy * dy + dz * dz);
+      if (t > 1) {
+        x = b.x;
+        y = b.y;
+        z = b.z;
+      } else if (t > 0) {
+        x += dx * t;
+        y += dy * t;
+        z += dz * t;
+      }
+    }
+
+    dx = p.x - x;
+    dy = p.y - y;
+    dz = p.z - z;
+    return dx * dx + dy * dy + dz * dz;
+  };
+
+  const simplifySection = (pts: THREE.Vector3[], first: number, last: number, out: THREE.Vector3[]) => {
+    let maxSq = sqTol;
+    let index = -1;
+
+    for (let i = first + 1; i < last; i++) {
+      const sqDist = getSqSegDist(pts[i], pts[first], pts[last]);
+      if (sqDist > maxSq) {
+        index = i;
+        maxSq = sqDist;
+      }
+    }
+
+    if (index !== -1) {
+      if (index - first > 1) simplifySection(pts, first, index, out);
+      out.push(pts[index]);
+      if (last - index > 1) simplifySection(pts, index, last, out);
+    }
+  };
+
+  const simplified: THREE.Vector3[] = [points[0]];
+  simplifySection(points, 0, points.length - 1, simplified);
+  simplified.push(points[points.length - 1]);
+  return simplified;
+}
+
+// Clamp overall grade so the path never pitches up/down excessively (avoids 90° flips).
+function limitMaxGrade(points: THREE.Vector3[], maxGrade: number) {
+  if (points.length < 2) return points;
+  let maxObserved = 0;
+  for (let i = 1; i < points.length; i++) {
+    const dz = points[i].y - points[i - 1].y;
+    const horiz = Math.max(1e-6, new THREE.Vector2(points[i].x - points[i - 1].x, points[i].z - points[i - 1].z).length());
+    maxObserved = Math.max(maxObserved, Math.abs(dz / horiz));
+  }
+  if (maxObserved <= maxGrade) return points;
+
+  const scale = maxGrade / maxObserved;
+  return points.map((p) => new THREE.Vector3(p.x, p.y * scale, p.z));
 }

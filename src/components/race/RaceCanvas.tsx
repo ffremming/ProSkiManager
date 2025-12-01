@@ -7,16 +7,18 @@ import { TrackProfile, loadTrackProfile, slopeAtDistance } from "../../game/rend
 import { Environment } from "../../game/render/Environment";
 import {
   Ground,
+  BaseGround,
   Terrain,
   Track,
   GrooveLines,
   TreeLine,
   SnowParticles,
   CourseMarkers,
-  TrackBerms,
   TrackProps,
   FarHills,
   SurroundingForest,
+  ForestPatches,
+  Spectators,
 } from "../../game/render/TrackScene";
 import { Skiers } from "../../game/render/Skiers";
 import { ChaseCamera } from "../../game/render/ChaseCamera";
@@ -78,6 +80,7 @@ export function RaceCanvas({ snapshot, course, focusAthleteId, settings, onSlope
         weather={settings?.weather || "clear"}
         timeOfDay={settings?.timeOfDay || "noon"}
       />
+      <BaseGround profile={profile} />
       <Ground profile={profile} />
       <FarHills />
       <SnowParticles density={(settings?.snowCount ?? 1) * (settings?.weather === "snow" ? 1.4 : settings?.weather === "fog" ? 0.6 : 0.3)} />
@@ -85,10 +88,11 @@ export function RaceCanvas({ snapshot, course, focusAthleteId, settings, onSlope
       <Track profile={profile} />
       <GrooveLines profile={profile} offset={0.7} />
       <GrooveLines profile={profile} offset={-0.7} />
-      <TrackBerms profile={profile} />
       <TrackProps profile={profile} />
       <CourseMarkers profile={profile} course={course} />
       <TreeLine profile={profile} density={settings?.treeDensity ?? 1} />
+      <ForestPatches profile={profile} />
+      <Spectators profile={profile} />
       <SurroundingForest profile={profile} density={settings?.treeDensity ?? 1} />
       <Skiers
         snapshot={snapshot}

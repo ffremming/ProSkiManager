@@ -68,7 +68,8 @@ export function advanceAthlete(
 
   power *= (state.energy / 100) ** 0.7;
 
-  let speed = Math.max(0.5, power * 7);
+  // Nudge baseline speed up so races play back at a snappier pace and better match the visual scale.
+  let speed = Math.max(1.2, power * 9);
 
   const energyCostBase =
     dt *
